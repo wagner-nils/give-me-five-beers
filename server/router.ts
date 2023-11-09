@@ -1,5 +1,7 @@
 import { Router } from 'express';
-import { createUser, getUser, postTodo, getTodo } from './controller';
+
+import * as userController from './controller/user.controller';
+import * as todoController from './controller/todo.controller';
 
 const router = Router();
 
@@ -7,10 +9,10 @@ router.get('/', (req, res) => {
   res.send('hello from router, i love typescript');
 });
 
-router.get('/user', getUser);
-router.get('/todo', getTodo);
+router.get('/user', userController.getUser);
+router.post('/user', userController.createUser);
 
-router.post('/user', createUser);
-router.post('/todo', postTodo);
+router.get('/todo', todoController.getTodo);
+router.post('/todo', todoController.postTodo);
 
 export default router;
