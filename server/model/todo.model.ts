@@ -1,7 +1,10 @@
 import { TodoModel, UserModel } from './index';
 
 const getTodo = async (id: string) => {
-  return await TodoModel.findOne({ _id: id }).populate('user');
+  return await TodoModel.find(
+    { user: id },
+    'content' // todo: how to select 2 fields
+  ).populate('user');
   // populate('key name')
 };
 

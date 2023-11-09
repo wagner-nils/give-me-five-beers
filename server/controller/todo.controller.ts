@@ -4,10 +4,11 @@ import * as todoModel from '../model/todo.model';
 
 const getTodo = async (req: Request, res: Response) => {
   try {
+    console.log(req.params);
     const {
-      body: { id },
+      params: { userId },
     } = req;
-    const data = await todoModel.getTodo(id);
+    const data = await todoModel.getTodo(userId);
     res.status(200).send(data);
   } catch (error) {
     console.log(error);

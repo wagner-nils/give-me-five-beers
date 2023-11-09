@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 router.get('/user', userController.getUser);
 router.post('/user', userController.createUser);
 
-router.get('/todo', todoController.getTodo);
+router.get('/user/:userId/todo', todoController.getTodo);
 router.post('/todo', todoController.postTodo);
 
 export default router;
