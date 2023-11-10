@@ -23,9 +23,10 @@ const HomePage = (props: Props) => {
     }
 
     const hasTodo = todos?.length;
-    const hasCompletedAll = todos?.every(todo => todo.status === 'completed');
+    const hasTodoInProgress = todos?.some(todo => todo.status === 'progress');
 
-    if (hasTodo && hasCompletedAll) {
+    // 第一次 login 时也能看见
+    if (hasTodo && !hasTodoInProgress) {
       dispatch(setHomePage('beer'));
     } else {
       dispatch(setHomePage('todo'));

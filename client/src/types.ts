@@ -2,7 +2,7 @@ export interface Todo {
   _id?: string;
   content: string;
   user: string;
-  status: string;
+  status?: string;
 }
 
 export interface Config {

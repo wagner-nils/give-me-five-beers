@@ -14,7 +14,7 @@ const TodoList = (props: Props) => {
     <div>
       TodoList
       {todos.map(todo => (
-        <Todo key={todo._id} content={todo.content} />
+        <Todo key={todo._id} id={todo._id} content={todo.content} />
       ))}
     </div>
   );

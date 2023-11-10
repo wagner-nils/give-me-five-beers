@@ -20,6 +20,13 @@ export const dbApi = createApi({
       }),
     }),
 
+    markTodo: builder.mutation<Todo, any>({
+      query: ({ id, type }) => ({
+        url: `/todo/${id}/${type}`,
+        method: 'PUT',
+      }),
+    }),
+
     getUser: builder.query<User, void>({
       query: () => '/user/654ccba8c6e9472ee1acb431',
     }),
@@ -28,5 +35,10 @@ export const dbApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetTodosQuery, usePostTodoMutation, useGetUserQuery } = dbApi;
+export const {
+  useGetTodosQuery,
+  usePostTodoMutation,
+  useMarkTodoMutation,
+  useGetUserQuery,
+} = dbApi;
 export const dbApiReducer = dbApi.reducer;
