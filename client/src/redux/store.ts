@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { todosReducer } from './todosSlice';
+import { configReducer } from './configSlice';
 import { dbApi, dbApiReducer } from './apiSlice';
 
 export const store = configureStore({
   reducer: {
     todos: todosReducer,
+    config: configReducer,
     dbApi: dbApiReducer,
   },
   middleware: getDefaultMiddleware =>
