@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import type { RootState } from './store';
+import { useAppSelector } from './hooks';
 import { Todo } from '../types';
 
 // Define a type for the slice state
@@ -26,6 +26,6 @@ export const { addTodos, addTodo } = todosSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 // useSelector
-export const getTodos = (state: RootState) => state.todos;
+export const getTodos = () => useAppSelector(state => state.todos);
 
 export const todosReducer = todosSlice.reducer;

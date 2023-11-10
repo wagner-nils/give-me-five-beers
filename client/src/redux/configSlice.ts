@@ -32,7 +32,9 @@ export const configSlice = createSlice({
 });
 
 export const { setTime, setHomePage } = configSlice.actions;
+
 export const getHomePageType = () =>
   useAppSelector(state => state.config.homePage);
 
+export const getTime = () => useAppSelector(state => state.config.time);
 export const configReducer = configSlice.reducer;

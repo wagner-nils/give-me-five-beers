@@ -22,9 +22,10 @@ const HomePage = (props: Props) => {
       dispatch(setTime(time));
     }
 
+    const hasTodo = todos?.length;
     const hasCompletedAll = todos?.every(todo => todo.status === 'completed');
 
-    if (hasCompletedAll) {
+    if (hasTodo && hasCompletedAll) {
       dispatch(setHomePage('beer'));
     } else {
       dispatch(setHomePage('todo'));

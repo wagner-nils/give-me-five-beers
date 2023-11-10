@@ -13,7 +13,6 @@ type Props = {};
 
 const HomeTodoPage = (props: Props) => {
   const { data: todos = [] } = useGetTodosQuery();
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
