@@ -1,8 +1,9 @@
 export interface Todo {
   _id?: string;
   content: string;
-  user: string;
+  user?: string;
   status?: string;
+  date?: Date;
 }
 
 export interface Config {

@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 import AffirmationBox from './AffirmationBox';
 
-import { useMarkTodoMutation } from '../redux/apiSlice';
+import { useAppDispatch } from '../redux/hooks';
+import { usePostTodoMutation, useMarkTodoMutation } from '../redux/apiSlice';
+import { setHomePage } from '../redux/configSlice';
 
 type Props = {
   id?: string;
@@ -10,9 +12,11 @@ type Props = {
 };
 
 const Todo = ({ id, content }: Props) => {
+  const dispatch = useAppDispatch();
   // todo: show only the clilcked button after clicking, and disable it
   const [showAff, setShowAff] = useState(false);
   const [markTodo] = useMarkTodoMutation();
+  const [postTodo] = usePostTodoMutation();
 
   const handleMarkTodo = (type: string) => {
     markTodo({ id, type })
@@ -20,6 +24,18 @@ const Todo = ({ id, content }: Props) => {
       .then(() => {
         setShowAff(true);
       });
+
+    if (type === 'tomorrow') {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      postTodo({ content, user: id, date: tomorrow })
+        .unwrap()
+        .then(result => {
+          console.log(result);
+        });
+    }
+
+    return;
   };
 
   return (
@@ -30,7 +46,9 @@ const Todo = ({ id, content }: Props) => {
         <button onClick={() => handleMarkTodo('abandoned')}>
           not completed, let it go
         </button>
-        <button>move to tomorrow</button>
+        <button onClick={() => handleMarkTodo('tomorrow')}>
+          move to tomorrow
+        </button>
       </div>
       {showAff && <AffirmationBox />}
     </div>

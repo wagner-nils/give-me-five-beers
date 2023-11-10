@@ -1,11 +1,22 @@
+import { startOfToday, endOfToday } from 'date-fns';
 import { TodoModel, UserModel } from './index';
 
 const getTodo = async (id: string) => {
-  return await TodoModel.find(
-    { user: id },
+  const todos = await TodoModel.find(
+    {
+      user: id,
+      date: {
+        $gte: startOfToday(),
+        $lte: endOfToday(),
+      },
+    },
     'content' // todo: how to select 2 fields
-  ).populate('user');
+  );
+  // .populate('user');
   // populate('key name')
+
+  console.log(todos);
+  return todos;
 };
 
 const postTodo = async (todo: any) => {
