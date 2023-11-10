@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
-
-import TodoInput from '../components/TodoInput';
-import TodoList from '../components/TodoList';
+import TodoSection from '../components/TodoSection';
 
 import { useAppDispatch } from '../redux/hooks';
 import { useGetTodosQuery } from '../redux/apiSlice';
@@ -22,8 +20,7 @@ const HomeTodoPage = (props: Props) => {
   return (
     <div>
       HomeTodoPage
-      <TodoInput />
-      <TodoList />
+      <TodoSection />
     </div>
   );
 };
