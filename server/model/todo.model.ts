@@ -22,4 +22,16 @@ const postTodo = async (todo: any) => {
   return newTodo;
 };
 
-export { postTodo, getTodo };
+const markTodo = async (id: string, status: string) => {
+  const updatedTodo = await TodoModel.findOneAndUpdate(
+    { _id: id },
+    { status },
+    {
+      new: true,
+    }
+  );
+
+  return updatedTodo;
+};
+
+export { postTodo, getTodo, markTodo };

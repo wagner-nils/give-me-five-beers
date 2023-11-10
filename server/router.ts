@@ -14,5 +14,6 @@ router.post('/user', userController.createUser);
 
 router.get('/user/:userId/todo', todoController.getTodo);
 router.post('/todo', todoController.postTodo);
+router.put('/todo/:todoId/:type', todoController.markTodo);
 
 export default router;
