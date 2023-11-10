@@ -10,7 +10,7 @@ const getTodo = async (id: string) => {
         $lte: endOfToday(),
       },
     },
-    'content' // todo: how to select 2 fields
+    'content status' // todo: how to select 2 fields elegantly
   );
   // .populate('user');
   // populate('key name')

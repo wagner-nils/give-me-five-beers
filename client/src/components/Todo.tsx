@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import AffirmationBox from './AffirmationBox';
 
 import { useAppDispatch } from '../redux/hooks';
 import { usePostTodoMutation, useMarkTodoMutation } from '../redux/apiSlice';
-import { setHomePage } from '../redux/configSlice';
+import { editTodoStatus } from '../redux/todosSlice';
 
 type Props = {
   id?: string;
@@ -14,16 +14,20 @@ type Props = {
 const Todo = ({ id, content }: Props) => {
   const dispatch = useAppDispatch();
   // todo: show only the clilcked button after clicking, and disable it
+  const [type, setType] = useState('');
   const [showAff, setShowAff] = useState(false);
+  const [seenAff, setSeenAff] = useState(false);
   const [markTodo] = useMarkTodoMutation();
   const [postTodo] = usePostTodoMutation();
 
   const handleMarkTodo = (type: string) => {
+    // api
     markTodo({ id, type })
       .unwrap()
-      .then(() => {
-        setShowAff(true);
-      });
+      .then(() => {});
+
+    //redux
+    dispatch(editTodoStatus({ id, type }));
 
     if (type === 'tomorrow') {
       const tomorrow = new Date();
@@ -38,11 +42,22 @@ const Todo = ({ id, content }: Props) => {
     return;
   };
 
+  useEffect(() => {
+    if (seenAff) {
+      handleMarkTodo(type);
+    }
+  }, [seenAff]);
+
+  const handleClick = () => {
+    setType('completed');
+    setShowAff(true);
+  };
+
   return (
     <div>
       <p>{content}</p>
       <div>
-        <button onClick={() => handleMarkTodo('completed')}>completed</button>
+        <button onClick={() => handleClick()}>completed</button>
         <button onClick={() => handleMarkTodo('abandoned')}>
           not completed, let it go
         </button>
@@ -50,7 +65,11 @@ const Todo = ({ id, content }: Props) => {
           move to tomorrow
         </button>
       </div>
-      {showAff && <AffirmationBox />}
+      <AffirmationBox
+        display={showAff}
+        setSeen={setSeenAff}
+        setDisplay={setShowAff}
+      />
     </div>
   );
 };

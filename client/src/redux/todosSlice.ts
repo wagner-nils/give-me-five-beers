@@ -19,13 +19,27 @@ export const todosSlice = createSlice({
     addTodo: (state, action: PayloadAction<Todo>) => {
       return [...state, action.payload];
     },
+
+    editTodoStatus: (state, action: PayloadAction<any>) => {
+      const {
+        payload: { id, type },
+      } = action;
+
+      console.log('test', action.payload);
+
+      state.forEach(todo => {
+        if (todo._id === id) {
+          todo.status = type;
+        }
+      });
+
+      return state;
+    },
   },
 });
 
-export const { addTodos, addTodo } = todosSlice.actions;
+export const { addTodos, addTodo, editTodoStatus } = todosSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
-// useSelector
 export const getTodos = () => useAppSelector(state => state.todos);
 
 export const todosReducer = todosSlice.reducer;
