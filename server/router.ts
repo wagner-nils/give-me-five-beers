@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   res.send('hello from router, i love typescript');
 });
 
-router.get('/user', userController.getUser);
+router.get('/user/:userId', userController.getUser);
 router.post('/user', userController.createUser);
 
 router.get('/user/:userId/todo', todoController.getTodo);

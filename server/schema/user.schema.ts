@@ -27,7 +27,7 @@ export const userSchema = new Schema({
       ref: 'BreweryModel',
     },
   ],
-  configure: {
+  config: {
     time: {
       type: String,
       default: '18:00',
