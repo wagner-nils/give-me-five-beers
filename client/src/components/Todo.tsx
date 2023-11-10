@@ -1,10 +1,13 @@
 import AffirmationBox from './AffirmationBox';
 
-type Props = {};
-const Todo = (props: Props) => {
+type Props = {
+  content: string;
+};
+
+const Todo = ({ content }: Props) => {
   return (
     <div>
-      Todo
+      <p>{content}</p>
       <div>
         <button>completed</button>
         <button>not completed, let it go</button>
