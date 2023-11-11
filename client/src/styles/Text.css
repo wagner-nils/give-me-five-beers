@@ -5,3 +5,7 @@
 .large {
   font-size: 1.5rem;
 }
+
+.underlinde {
+  text-decoration: underline dashed;
+}

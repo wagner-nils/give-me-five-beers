@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
   useGetRandomBarQuery,
   useGetRandomBreweryQuery,
@@ -6,14 +5,16 @@ import {
 
 import Text from './Text';
 
+import '../styles/BeerInformationBox.css';
+
 type Props = {
   type: 'bar' | 'brewery';
 };
 
 const BeerInformationBox = ({ type }: Props) => {
   const title = {
-    bar: 'fancy a drink',
-    brewery: 'explore the world',
+    bar: 'Fancying a drink',
+    brewery: 'Exploring the world',
   };
 
   const text = {
@@ -37,19 +38,33 @@ const BeerInformationBox = ({ type }: Props) => {
   const { data: info, isSuccess } = useQuery();
 
   return (
-    <>
-      <Text text={title[type]} />
+    <div className="beer-information-box">
+      <Text large underline text={title[type]} />
       <Text text={text[type]} />
       {isSuccess && (
-        <>
+        <div className="beer-information">
           <p>{info.name}</p>
-          {/* <p>at</p>
-          <a href={bar.url} target="_blank">
-            here
-          </a> */}
-        </>
+          <p>
+            {type === 'bar'
+              ? info.formattedAddress.split(',').slice(0, 2).join(',')
+              : info.address_1}
+          </p>
+          <a
+            href={type === 'bar' ? info.website : info.website_url}
+            target="_blank"
+          >
+            website
+          </a>
+          <p>
+            {info.city} {info.country}
+          </p>
+        </div>
       )}
-    </>
+      <div>
+        <Text text="It' s really good. Trust me." />
+        <Text text="Have a well deserved night!" />
+      </div>
+    </div>
   );
 };
 

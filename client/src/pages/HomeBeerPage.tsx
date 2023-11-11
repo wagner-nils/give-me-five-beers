@@ -3,6 +3,8 @@ import { useState } from 'react';
 import BeerOptions from '../components/BeerOptions';
 import BeerInformationBox from '../components/BeerInformationBox';
 
+import '../styles/homePage.css';
+
 type Props = {};
 const HomeBeerPage = (props: Props) => {
   // todo:
@@ -11,10 +13,10 @@ const HomeBeerPage = (props: Props) => {
   const [type, setType] = useState(null);
 
   return (
-    <div>
-      HomeBeerPage
+    <div className="beer-section">
       {!type && <BeerOptions setType={setType} />}
-      {type && <BeerInformationBox type={type} />}
+      {/* {type && <BeerInformationBox type={type} />} */}
+      {true && <BeerInformationBox type={'bar'} />}
     </div>
   );
 };
