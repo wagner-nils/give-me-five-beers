@@ -1,4 +1,4 @@
-import { startOfToday, endOfToday } from 'date-fns';
+import moment from 'moment';
 import { TodoModel, UserModel } from './index';
 
 const getTodo = async (id: string) => {
@@ -6,8 +6,8 @@ const getTodo = async (id: string) => {
     {
       user: id,
       date: {
-        $gte: startOfToday(),
-        $lte: endOfToday(),
+        $gte: moment().startOf('date'),
+        $lte: moment().endOf('date'),
       },
     },
     'content status' // todo: how to select 2 fields elegantly
@@ -15,7 +15,6 @@ const getTodo = async (id: string) => {
   // .populate('user');
   // populate('key name')
 
-  console.log(todos);
   return todos;
 };
 
