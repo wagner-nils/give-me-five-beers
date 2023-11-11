@@ -2,6 +2,8 @@ import Todo from './Todo';
 import Bridge from './Bridge';
 import { getTodos } from '../redux/todosSlice';
 
+import '../styles/TodoList.css';
+
 type Props = {};
 const TodoList = (props: Props) => {
   const todos = getTodos();
@@ -15,15 +17,14 @@ const TodoList = (props: Props) => {
   }
 
   return (
-    <div>
-      TodoList
-      {hasProgressTodo ? (
-        progressTodo.map(todo => (
-          <Todo key={todo._id} id={todo._id} content={todo.content} />
-        ))
-      ) : (
-        <Bridge />
-      )}
+    <div className="todo-list-section">
+      {/* {hasProgressTodo ? ( */}
+      {progressTodo.map(todo => (
+        <Todo key={todo._id} id={todo._id} content={todo.content} />
+      ))}
+      {/* ) : ( */}
+      <Bridge />
+      {/* ) */}
     </div>
   );
 };

@@ -7,6 +7,8 @@ import Reminder from '../components/Reminder';
 import { getTime } from '../redux/configSlice';
 import { getTodos } from '../redux/todosSlice';
 
+import '../styles/TodoSection.css';
+
 type Props = {};
 const TodoSection = (props: Props) => {
   const todos = getTodos();
@@ -18,9 +20,9 @@ const TodoSection = (props: Props) => {
   const reminderType = now <= time ? 'todo' : 'beer';
 
   return (
-    <div>
-      TodoSection
-      {!hasTodo && <Reminder type={reminderType} />}
+    <div className="todo-section">
+      {/* {!hasTodo && <Reminder type={reminderType} />} */}
+      <Reminder type={reminderType} />
       {reminderType === 'todo' && <TodoInput />}
       <TodoList />
     </div>

@@ -6,6 +6,7 @@
 
 :root {
   background-color: rebeccapurple;
+  --primary-color: #ffc002;
 }
 
 button:hover {

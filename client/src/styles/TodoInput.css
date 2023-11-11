@@ -1,0 +1,16 @@
+.add-todo-input {
+  border: none;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+.add-todo-input:focus {
+  outline: none;
+}
+
+.add-todo-btn {
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+}

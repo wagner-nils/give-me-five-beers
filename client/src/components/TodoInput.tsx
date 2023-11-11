@@ -4,7 +4,7 @@ import { useAppDispatch } from '../redux/hooks';
 import { usePostTodoMutation } from '../redux/apiSlice';
 import { addTodo } from '../redux/todosSlice';
 
-// import { Todo } from '../types';
+import '../styles/TodoInput.css';
 
 type Props = {};
 
@@ -20,22 +20,28 @@ const TodoInput = (props: Props) => {
       content,
       user,
     };
+
     postTodo(todo)
       .unwrap()
       .then(result => {
         console.log(result);
         dispatch(addTodo(result));
       });
+
+    setContent('');
   };
 
   return (
-    <div>
+    <div className="todo-input-section">
       <input
+        className="add-todo-input"
         value={content}
         onChange={e => setContent(e.target.value)}
         type="text"
       />
-      <button onClick={() => handleAddTodo(content)}>add</button>
+      <button className="add-todo-btn" onClick={() => handleAddTodo(content)}>
+        add
+      </button>
     </div>
   );
 };

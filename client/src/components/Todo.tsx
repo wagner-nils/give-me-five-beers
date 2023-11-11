@@ -8,6 +8,8 @@ import { usePostTodoMutation, useMarkTodoMutation } from '../redux/apiSlice';
 import { editTodoStatus } from '../redux/todosSlice';
 import { getTime } from '../redux/configSlice';
 
+import '../styles/Todo.css';
+
 type Props = {
   id?: string;
   content: string;
@@ -60,21 +62,31 @@ const Todo = ({ id, content }: Props) => {
   };
 
   return (
-    <div>
-      <p>{content}</p>
-      {showBtn && (
-        <div>
-          <button onClick={() => handleClick()}>completed</button>
-          <button onClick={() => handleMarkTodo('abandoned')}>
+    <div className="todo">
+      <p className="todo-content">{content}</p>
+      {/* {showBtn && ( */}
+      {true && (
+        <div className="todo-btns">
+          <button className="todo-btn complete" onClick={() => handleClick()}>
+            completed
+          </button>
+          <button
+            className="todo-btn abandon"
+            onClick={() => handleMarkTodo('abandoned')}
+          >
             not completed, let it go
           </button>
-          <button onClick={() => handleMarkTodo('tomorrow')}>
+          <button
+            className="todo-btn tomorrow"
+            onClick={() => handleMarkTodo('tomorrow')}
+          >
             move to tomorrow
           </button>
         </div>
       )}
       <AffirmationBox
-        display={showAff}
+        display={true}
+        // display={showAff}
         setSeen={setSeenAff}
         setDisplay={setShowAff}
       />

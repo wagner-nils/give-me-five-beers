@@ -4,9 +4,9 @@ import './App.css';
 
 const App = () => {
   return (
-    <div>
-      <h1>hello november, give me five beers</h1>
+    <div className="app">
       <HomePage />
+      {/* <Nav/> */}
     </div>
   );
 };

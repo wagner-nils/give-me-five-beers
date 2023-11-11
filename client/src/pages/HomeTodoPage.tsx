@@ -18,10 +18,9 @@ const HomeTodoPage = (props: Props) => {
   }, [todos]);
 
   return (
-    <div>
-      HomeTodoPage
+    <>
       <TodoSection />
-    </div>
+    </>
   );
 };
 export default HomeTodoPage;

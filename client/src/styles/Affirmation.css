@@ -1,0 +1,11 @@
+.affirmation-box {
+  background-color: aliceblue;
+  width: 100%;
+  padding: 1rem;
+}
+
+.affirmation-btn {
+  font-size: 1.3rem;
+  border: none;
+  padding: 1rem;
+}

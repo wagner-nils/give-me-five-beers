@@ -1,0 +1,10 @@
+.bridge {
+  background-color: aliceblue;
+  padding: 2rem;
+}
+
+.bridge-btn {
+  border: none;
+  padding: 1rem;
+  font-size: 1.2rem;
+}

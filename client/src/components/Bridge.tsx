@@ -3,6 +3,8 @@
 import { useAppDispatch } from '../redux/hooks';
 import { setHomePage } from '../redux/configSlice';
 
+import '../styles/Bridge.css';
+
 type Props = {};
 const Bridge = (props: Props) => {
   const useDispatch = useAppDispatch();
@@ -10,9 +12,13 @@ const Bridge = (props: Props) => {
     useDispatch(setHomePage('beer'));
   };
   return (
-    <div>
-      <button onClick={() => handleClick()}>go to beer optioins</button>
+    <div className="bridge">
+      <button className="bridge-btn" onClick={() => handleClick()}>
+        Go to beer optioins 🍻
+      </button>
     </div>
   );
 };
 export default Bridge;
+
+// todo: change emoji to icon

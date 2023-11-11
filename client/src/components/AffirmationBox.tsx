@@ -1,3 +1,7 @@
+import Text from './Text';
+
+import '../styles/Affirmation.css';
+
 type Props = {
   display: boolean;
   setDisplay: Function;
@@ -16,9 +20,11 @@ const AffirmationBox = ({ display, setDisplay, setSeen }: Props) => {
   };
 
   return (
-    <div>
-      <p>You are the best</p>
-      <button onClick={() => handleClick()}>I know</button>
+    <div className="affirmation-box">
+      <Text text="You are the best!" large />
+      <button className="affirmation-btn" onClick={() => handleClick()}>
+        I KNOW
+      </button>
     </div>
   );
 };

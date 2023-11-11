@@ -1,6 +1,10 @@
-#root {
-  background-color: whitesmoke;
-  max-width: 1280px;
+.app {
   margin: auto;
+  padding: 2rem;
+  width: 100vw;
+  max-width: 620px;
+  min-height: 100vh;
+  overflow-y: scroll;
   text-align: center;
+  background-color: whitesmoke;
 }
