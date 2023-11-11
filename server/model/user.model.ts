@@ -1,7 +1,21 @@
+import moment from 'moment';
 import { UserModel } from './index';
 
 const getUser = async (id: string) => {
-  return await UserModel.findOne({ _id: id }).populate('todo');
+  const todos = await UserModel.findOne({ _id: id }).populate({
+    path: 'todo',
+    select: 'content status',
+    match: {
+      date: {
+        $gte: moment().startOf('date'),
+        $lte: moment().endOf('date'),
+      },
+    },
+  });
+
+  console.log(todos);
+
+  return todos;
 };
 
 const createUser = async (user: any) => {
