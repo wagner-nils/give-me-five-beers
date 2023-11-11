@@ -27,6 +27,7 @@ const Todo = ({ id, content }: Props) => {
   const time = getTime();
   const now = moment().format('HH:MM');
   const showBtn = now > time;
+  // todo: enable btn,c lick and show
 
   const handleMarkTodo = (type: string) => {
     // api
@@ -56,37 +57,40 @@ const Todo = ({ id, content }: Props) => {
     }
   }, [seenAff]);
 
-  const handleClick = () => {
-    setType('completed');
+  const handleClick = (type: string) => {
+    setType(type);
     setShowAff(true);
   };
 
   return (
     <div className="todo">
       <p className="todo-content">{content}</p>
-      {/* {showBtn && ( */}
-      {true && (
+      {/* {true && ( */}
+      {showBtn && (
         <div className="todo-btns">
-          <button className="todo-btn complete" onClick={() => handleClick()}>
+          <button
+            className="todo-btn complete"
+            onClick={() => handleClick('completed')}
+          >
             completed
           </button>
           <button
             className="todo-btn abandon"
-            onClick={() => handleMarkTodo('abandoned')}
+            onClick={() => handleClick('abandoned')}
           >
             not completed, let it go
           </button>
           <button
             className="todo-btn tomorrow"
-            onClick={() => handleMarkTodo('tomorrow')}
+            onClick={() => handleClick('tomorrow')}
           >
             move to tomorrow
           </button>
         </div>
       )}
       <AffirmationBox
-        display={true}
-        // display={showAff}
+        // display={true}
+        display={showAff}
         setSeen={setSeenAff}
         setDisplay={setShowAff}
       />
