@@ -1,0 +1,35 @@
+.nav {
+  background-color: var(--primary-color);
+  margin: 0;
+  padding: 0.5rem;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 620px;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-icon {
+  background-color: var(--primary-light-color);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 20%;
+}
+
+.nav-icon img {
+  margin: 15% 0;
+  width: 70%;
+  height: 70%;
+}
+
+@media screen and (max-width: 600px) {
+  .nav {
+    height: 8vh;
+  }
+}
