@@ -7,12 +7,14 @@ type Props = {
   light?: Boolean;
   large?: Boolean;
   underline?: Boolean;
+  bold?: Boolean;
 };
-const Text = ({ text, light, large, underline }: Props) => {
+const Text = ({ text, light, large, underline, bold }: Props) => {
   const classnames = classNames({
     light,
     large,
     underline,
+    bold,
   });
 
   return (

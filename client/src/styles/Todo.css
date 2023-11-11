@@ -1,6 +1,7 @@
 .todo-content {
-  background-color: aliceblue;
-  border: dashed 1px gainsboro;
+  background-color: var(--primary-light-color);
+  border: dashed 1px var(--primary-color);
+  color: var(--primary-text-color);
   padding: 0.7rem 0;
   font-size: 1.2rem;
 }
@@ -14,8 +15,10 @@
 
 .todo-btn {
   width: 70%;
-  background-color: aliceblue;
-  border: 1px dashed gainsboro;
+  background-color: var(--primary-light-color);
+
+  border: 1px dashed var(--primary-color);
+  color: var(--primary-text-color);
   padding: 0.3rem;
   font-size: 1rem;
 }

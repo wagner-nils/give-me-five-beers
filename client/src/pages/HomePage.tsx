@@ -50,8 +50,8 @@ const HomePage = (props: Props) => {
   return (
     <div>
       <h1 className="home-title">
-        hello, november <br />
-        give me five beers
+        Hello, November <br />
+        Give Me 5 Beers
       </h1>
       {type === 'todo' ? <HomeTodoPage /> : <HomeBeerPage />}
     </div>

@@ -5,9 +5,12 @@
 }
 
 :root {
-  background-color: rebeccapurple;
+  --primary-background-color: rebeccapurple;
+  --primary-background-color-light: rgba(102, 51, 153, 0.2);
   --primary-color: #ffc002;
+  --primary-text-color: #8a4500;
   --primary-light-color: #fef8e1;
+  background-color: var(--primary-background-color);
 }
 
 button:hover {

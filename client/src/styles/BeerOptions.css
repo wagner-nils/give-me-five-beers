@@ -4,4 +4,6 @@
   width: 100%;
   font-size: 1.2rem;
   border: none;
+  color: var(--primary-text-color);
+  background-color: var(--primary-color);
 }

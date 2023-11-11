@@ -1,11 +1,15 @@
 .affirmation-box {
-  background-color: aliceblue;
+  background-color: var(--primary-light-color);
+  color: var(--primary-background-color);
   width: 100%;
   padding: 1rem;
 }
 
 .affirmation-btn {
+  margin-top: 0.5rem;
+  padding: 0.7rem;
   font-size: 1.3rem;
-  border: none;
-  padding: 1rem;
+  color: var(--primary-background-color);
+  background-color: var(--primary-light-color);
+  border: 1px solid var(--primary-background-color);
 }

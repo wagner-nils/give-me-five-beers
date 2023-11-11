@@ -39,7 +39,7 @@ const BeerInformationBox = ({ type }: Props) => {
 
   return (
     <div className="beer-information-box">
-      <Text large underline text={title[type]} />
+      <Text large bold underline text={title[type]} />
       <Text text={text[type]} />
       {isSuccess && (
         <div className="beer-information">

@@ -1,5 +1,5 @@
 .add-todo-input {
-  border: none;
+  border: 1px dashed var(--primary-color);
   padding: 0.5rem;
   margin-right: 1rem;
   font-size: 1rem;
@@ -10,7 +10,9 @@
 }
 
 .add-todo-btn {
-  border: none;
+  border: 1px dashed var(--primary-light-color);
+  background-color: var(--primary-color);
+  color: var(--primary-light-color);
   padding: 0.5rem;
   font-size: 1rem;
 }

@@ -1,5 +1,5 @@
 .light {
-  color: gainsboro;
+  color: var(--primary-light-color);
 }
 
 .large {
@@ -8,4 +8,8 @@
 
 .underlinde {
   text-decoration: underline dashed;
+}
+
+.bold {
+  font-weight: 500;
 }
