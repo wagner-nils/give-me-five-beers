@@ -18,13 +18,13 @@ const TodoList = (props: Props) => {
 
   return (
     <div className="todo-list-section">
-      {/* {hasProgressTodo ? ( */}
-      {progressTodo.map(todo => (
-        <Todo key={todo._id} id={todo._id} content={todo.content} />
-      ))}
-      {/* ) : ( */}
-      <Bridge />
-      {/* ) */}
+      {hasProgressTodo ? (
+        progressTodo.map(todo => (
+          <Todo key={todo._id} id={todo._id} content={todo.content} />
+        ))
+      ) : (
+        <Bridge />
+      )}
     </div>
   );
 };

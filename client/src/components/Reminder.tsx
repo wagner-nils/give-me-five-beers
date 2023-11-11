@@ -21,9 +21,9 @@ const Reminder = ({ type }: Props) => {
   if (type === 'beer') {
     return (
       <div className="reminder-section">
-        <Text text="It is night time, you have had a long day." />
+        <Text text="It is night time," />
         <Text text="go straight for beer." />
-        <button>ok</button>
+        <button className="reminder-btn">ok</button>
       </div>
     );
   }

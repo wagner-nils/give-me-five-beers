@@ -6,4 +6,27 @@
   border: none;
   color: var(--primary-text-color);
   background-color: var(--primary-color);
+  position: relative;
+}
+
+.beer-option-tap.drink {
+  background-color: var(--primary-light-color);
+  padding: 0.5rem;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  left: 0.8rem;
+  top: 0.2rem;
+}
+
+.beer-option-tap.world {
+  background-color: var(--primary-light-color);
+  padding: 0.5rem;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  right: 0.8rem;
+  top: 0.2rem;
 }

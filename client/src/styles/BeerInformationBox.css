@@ -6,6 +6,13 @@
 }
 
 .beer-information {
+  padding: 1rem;
   background-color: var(--primary-color);
-  padding: 1rem 0;
+  padding: 1rem;
+}
+
+.beer-information .icon {
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 1rem;
 }

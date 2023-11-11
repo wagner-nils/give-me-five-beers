@@ -5,6 +5,9 @@ import {
 
 import Text from './Text';
 
+import HazyIpa from '../assets/hazy-ipa.png';
+import Brewery from '../assets/brewery.png';
+
 import '../styles/BeerInformationBox.css';
 
 type Props = {
@@ -37,12 +40,18 @@ const BeerInformationBox = ({ type }: Props) => {
 
   const { data: info, isSuccess } = useQuery();
 
+  const iconSrc = {
+    bar: HazyIpa,
+    brewery: Brewery,
+  };
+
   return (
     <div className="beer-information-box">
       <Text large bold underline text={title[type]} />
       <Text text={text[type]} />
       {isSuccess && (
         <div className="beer-information">
+          <img className="icon" src={iconSrc[type]} alt="" />
           <p>{info.name}</p>
           <p>
             {type === 'bar'

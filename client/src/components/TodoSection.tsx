@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { useState, useEffect } from 'react';
 
 import TodoInput from '../components/TodoInput';
 import TodoList from '../components/TodoList';
@@ -11,6 +12,7 @@ import '../styles/TodoSection.css';
 
 type Props = {};
 const TodoSection = (props: Props) => {
+  //todo: time gap
   const todos = getTodos();
 
   const hasTodo = todos.length > 0;
@@ -19,10 +21,14 @@ const TodoSection = (props: Props) => {
   const now = moment().format('HH:MM');
   const reminderType = now <= time ? 'todo' : 'beer';
 
+  if (todos === null) {
+    return <p>loading</p>;
+  }
+
   return (
     <div className="todo-section">
-      {/* {!hasTodo && <Reminder type={reminderType} />} */}
-      <Reminder type={reminderType} />
+      {!hasTodo && <Reminder type={reminderType} />}
+      {/* <Reminder type={reminderType} /> */}
       {reminderType === 'todo' && <TodoInput />}
       <TodoList />
     </div>

@@ -1,3 +1,5 @@
+import BeerOptionTap from '../assets/beer-option-tap.png';
+
 import '../styles/BeerOptions.css';
 
 type Props = {
@@ -7,10 +9,12 @@ const BeerOptions = ({ setType }: Props) => {
   return (
     <div className="beer-options">
       <button className="beer-option-btn" onClick={() => setType('bar')}>
-        Fancy a drink
+        <img className="beer-option-tap drink" src={BeerOptionTap} alt="" />
+        Fancy some drinks
       </button>
       <button className="beer-option-btn" onClick={() => setType('brewery')}>
         Explore the world
+        <img className="beer-option-tap world" src={BeerOptionTap} alt="" />
       </button>
     </div>
   );

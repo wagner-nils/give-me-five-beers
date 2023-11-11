@@ -15,8 +15,8 @@ const HomeBeerPage = (props: Props) => {
   return (
     <div className="beer-section">
       {!type && <BeerOptions setType={setType} />}
-      {/* {type && <BeerInformationBox type={type} />} */}
-      {true && <BeerInformationBox type={'bar'} />}
+      {type && <BeerInformationBox type={type} />}
+      {/* {true && <BeerInformationBox type={'brewery'} />} */}
     </div>
   );
 };
