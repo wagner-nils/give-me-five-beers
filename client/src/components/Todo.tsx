@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import moment from 'moment';
 
 import AffirmationBox from './AffirmationBox';
 
 import { useAppDispatch } from '../redux/hooks';
 import { usePostTodoMutation, useMarkTodoMutation } from '../redux/apiSlice';
 import { editTodoStatus } from '../redux/todosSlice';
+import { getTime } from '../redux/configSlice';
 
 type Props = {
   id?: string;
@@ -19,6 +21,10 @@ const Todo = ({ id, content }: Props) => {
   const [seenAff, setSeenAff] = useState(false);
   const [markTodo] = useMarkTodoMutation();
   const [postTodo] = usePostTodoMutation();
+
+  const time = getTime();
+  const now = moment().format('HH:MM');
+  const showBtn = now > time;
 
   const handleMarkTodo = (type: string) => {
     // api
@@ -56,15 +62,17 @@ const Todo = ({ id, content }: Props) => {
   return (
     <div>
       <p>{content}</p>
-      <div>
-        <button onClick={() => handleClick()}>completed</button>
-        <button onClick={() => handleMarkTodo('abandoned')}>
-          not completed, let it go
-        </button>
-        <button onClick={() => handleMarkTodo('tomorrow')}>
-          move to tomorrow
-        </button>
-      </div>
+      {showBtn && (
+        <div>
+          <button onClick={() => handleClick()}>completed</button>
+          <button onClick={() => handleMarkTodo('abandoned')}>
+            not completed, let it go
+          </button>
+          <button onClick={() => handleMarkTodo('tomorrow')}>
+            move to tomorrow
+          </button>
+        </div>
+      )}
       <AffirmationBox
         display={showAff}
         setSeen={setSeenAff}
