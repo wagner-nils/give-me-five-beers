@@ -2,16 +2,17 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { todosReducer } from './todosSlice';
 import { configReducer } from './configSlice';
-import { dbApi, dbApiReducer } from './apiSlice';
+import { dbApi, dbApiReducer, breweryApi, breweryApiReducer } from './apiSlice';
 
 export const store = configureStore({
   reducer: {
     todos: todosReducer,
     config: configReducer,
     dbApi: dbApiReducer,
+    breweryApi: breweryApiReducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(dbApi.middleware),
+    getDefaultMiddleware().concat([dbApi.middleware, breweryApi.middleware]),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

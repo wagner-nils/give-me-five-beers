@@ -1,4 +1,8 @@
-import { useGetRandomBarQuery } from '../redux/apiSlice';
+import { useEffect } from 'react';
+import {
+  useGetRandomBarQuery,
+  useGetRandomBreweryQuery,
+} from '../redux/apiSlice';
 
 import Text from './Text';
 
@@ -17,7 +21,20 @@ const BeerInformationBox = ({ type }: Props) => {
     brewery: 'look at this brewery',
   };
 
-  const { data: bar, isSuccess } = useGetRandomBarQuery();
+  // todo: refactor
+  // customize a hook?
+  const useQuery = () => {
+    let res;
+    if (type === 'bar') {
+      res = useGetRandomBarQuery();
+    } else {
+      res = useGetRandomBreweryQuery();
+    }
+
+    return res;
+  };
+
+  const { data: info, isSuccess } = useQuery();
 
   return (
     <>
@@ -25,11 +42,11 @@ const BeerInformationBox = ({ type }: Props) => {
       <Text text={text[type]} />
       {isSuccess && (
         <>
-          <p>{bar.name}</p>
-          <p>at</p>
+          <p>{info.name}</p>
+          {/* <p>at</p>
           <a href={bar.url} target="_blank">
             here
-          </a>
+          </a> */}
         </>
       )}
     </>

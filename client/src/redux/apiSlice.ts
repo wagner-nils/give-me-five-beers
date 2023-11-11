@@ -38,6 +38,26 @@ export const dbApi = createApi({
   }),
 });
 
+export const breweryApi = createApi({
+  reducerPath: 'breweryApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://api.openbrewerydb.org/v1/breweries',
+  }),
+  refetchOnMountOrArgChange: 0.1,
+  endpoints: builder => ({
+    getRandomBrewery: builder.query<any, void>({
+      query: () => ({
+        url: '/random',
+        // todo: how to prevent caching
+        headers: { 'Cache-Control': 'no-cache' },
+      }),
+      transformResponse: (response: any) => {
+        return response[0];
+      },
+    }),
+  }),
+});
+
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 export const {
@@ -48,3 +68,6 @@ export const {
   useGetRandomBarQuery,
 } = dbApi;
 export const dbApiReducer = dbApi.reducer;
+
+export const { useGetRandomBreweryQuery } = breweryApi;
+export const breweryApiReducer = breweryApi.reducer;
