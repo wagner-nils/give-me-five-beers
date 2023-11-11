@@ -30,6 +30,11 @@ export const dbApi = createApi({
     getUser: builder.query<User, void>({
       query: () => '/user/654ccba8c6e9472ee1acb431',
     }),
+
+    // todo: refactor api endpoint
+    getRandomBar: builder.query<any, void>({
+      query: () => '/choice/bar',
+    }),
   }),
 });
 
@@ -40,5 +45,6 @@ export const {
   usePostTodoMutation,
   useMarkTodoMutation,
   useGetUserQuery,
+  useGetRandomBarQuery,
 } = dbApi;
 export const dbApiReducer = dbApi.reducer;

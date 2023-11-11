@@ -1,3 +1,5 @@
+import { useGetRandomBarQuery } from '../redux/apiSlice';
+
 import Text from './Text';
 
 type Props = {
@@ -15,16 +17,25 @@ const BeerInformationBox = ({ type }: Props) => {
     brewery: 'look at this brewery',
   };
 
+  const { data: bar, isSuccess } = useGetRandomBarQuery();
+
   return (
     <>
       <Text text={title[type]} />
       <Text text={text[type]} />
+      {isSuccess && (
+        <>
+          <p>{bar.name}</p>
+          <p>at</p>
+          <a href={bar.url} target="_blank">
+            here
+          </a>
+        </>
+      )}
     </>
   );
 };
 
 export default BeerInformationBox;
 
-// todo:
-// rename
-// refactor home beer page structure
+// refactor: extract info?
