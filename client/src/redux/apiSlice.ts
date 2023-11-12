@@ -53,12 +53,12 @@ export const dbApi = createApi({
   }),
 });
 
+// todo?: get brewery at server
 export const breweryApi = createApi({
   reducerPath: 'breweryApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.openbrewerydb.org/v1/breweries',
   }),
-  refetchOnMountOrArgChange: 0.1,
   endpoints: builder => ({
     getRandomBrewery: builder.query<any, void>({
       query: () => ({
@@ -69,6 +69,9 @@ export const breweryApi = createApi({
       transformResponse: (response: any) => {
         return response[0];
       },
+    }),
+    getChosenBrewery: builder.query<any, string>({
+      query: id => `${id}`,
     }),
   }),
 });
@@ -86,5 +89,6 @@ export const {
 } = dbApi;
 export const dbApiReducer = dbApi.reducer;
 
-export const { useGetRandomBreweryQuery } = breweryApi;
+export const { useGetRandomBreweryQuery, useGetChosenBreweryQuery } =
+  breweryApi;
 export const breweryApiReducer = breweryApi.reducer;

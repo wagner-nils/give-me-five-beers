@@ -9,7 +9,7 @@ export interface Todo {
 export interface Config {
   time: string;
   homePage: string;
-  choice: string;
+  choice: Choice;
 }
 
 export interface User {
@@ -22,5 +22,6 @@ export interface User {
 
 export interface Choice {
   type: string;
-  date: string;
+  choiceId: string;
+  date?: string;
 }

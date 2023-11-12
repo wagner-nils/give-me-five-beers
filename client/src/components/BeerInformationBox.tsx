@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import {
   useGetRandomBarQuery,
-  useGetRandomBreweryQuery,
   useGetChosenBarQuery,
+  useGetRandomBreweryQuery,
+  useGetChosenBreweryQuery,
   usePostBeerOptionMutation,
 } from '../redux/apiSlice';
 
@@ -61,7 +62,9 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
         ? useGetChosenBarQuery(choice.choiceId)
         : useGetRandomBarQuery();
     } else {
-      res = useGetRandomBreweryQuery();
+      res = hasChosen
+        ? useGetChosenBreweryQuery(choice.choiceId)
+        : useGetRandomBreweryQuery();
     }
 
     return res;
