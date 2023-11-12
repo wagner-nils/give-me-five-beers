@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import {
   useGetRandomBarQuery,
   useGetRandomBreweryQuery,
+  useGetChosenBarQuery,
   usePostBeerOptionMutation,
 } from '../redux/apiSlice';
 
@@ -14,10 +15,12 @@ import '../styles/BeerInformationBox.css';
 
 type Props = {
   // todo
+  hasChosen: Boolean;
+  choice: any;
   type: string;
 };
 
-const BeerInformationBox = ({ type }: Props) => {
+const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
   let title = '',
     text = '',
     iconSrc = '';
@@ -54,7 +57,9 @@ const BeerInformationBox = ({ type }: Props) => {
   const useQuery = () => {
     let res;
     if (type === 'bar') {
-      res = useGetRandomBarQuery();
+      res = hasChosen
+        ? useGetChosenBarQuery(choice.choiceId)
+        : useGetRandomBarQuery();
     } else {
       res = useGetRandomBreweryQuery();
     }
@@ -67,7 +72,7 @@ const BeerInformationBox = ({ type }: Props) => {
   const [postBeerOption] = usePostBeerOptionMutation();
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && !hasChosen) {
       const choice = {
         type,
         choiceId: type === 'bar' ? info._id : info.id,

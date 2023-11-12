@@ -9,7 +9,10 @@ import { useAppSelector } from './hooks';
 const initialState: Config = {
   time: '17:00',
   homePage: '',
-  choice: '',
+  choice: {
+    type: '',
+    choiceId: '',
+  },
 };
 
 export const configSlice = createSlice({
@@ -29,10 +32,10 @@ export const configSlice = createSlice({
         homePage: action.payload,
       };
     },
-    setChoice: (state, action: PayloadAction<string>) => {
+    setChoice: (state, action: PayloadAction<any>) => {
       return {
         ...state,
-        choice: action.payload,
+        choice: { ...state.choice, ...action.payload },
       };
     },
   },

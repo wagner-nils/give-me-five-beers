@@ -15,7 +15,7 @@ const getUser = async (id: string) => {
     })
     .populate({
       path: 'choice',
-      select: 'date type',
+      select: 'date type choiceId',
       match: {
         date: {
           $gte: moment().startOf('date'),

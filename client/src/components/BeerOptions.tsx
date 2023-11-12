@@ -13,7 +13,7 @@ const BeerOptions = ({ setType }: Props) => {
 
   const handleChoose = (type: string) => {
     setType(type);
-    dispatch(setChoice(type));
+    dispatch(setChoice({ type }));
   };
   return (
     <div className="beer-options">

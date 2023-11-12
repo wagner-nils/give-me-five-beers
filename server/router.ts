@@ -21,6 +21,7 @@ router.put('/todo/:todoId/:type', todoController.markTodo);
 // todo: refactor route structure
 // only for bar; has nothing to do with choice
 router.get('/choice/:type', barController.getRandomBar);
+router.get('/choice/:type/:id', barController.getChosenBar);
 
 router.post('/choice/:type', ChoiceController.postBeerOption);
 

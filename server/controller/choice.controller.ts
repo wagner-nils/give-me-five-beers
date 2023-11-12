@@ -9,6 +9,10 @@ const postBeerOption = async (req: Request, res: Response) => {
       body: { userId, choiceId },
     } = req;
 
+    if (type !== 'bar' && type !== 'brewery') {
+      throw new Error();
+    }
+
     const choiceRes = await ChoiceModel.postBeerOption({
       type,
       userId,
@@ -16,7 +20,9 @@ const postBeerOption = async (req: Request, res: Response) => {
     });
 
     res.status(201).send(choiceRes);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export { postBeerOption };

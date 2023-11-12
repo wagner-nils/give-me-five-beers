@@ -8,4 +8,12 @@ const getRandomBar = async () => {
   return bar[index];
 };
 
-export { getRandomBar };
+const getChosenBar = async (id: string) => {
+  const bar = await BarModel.findOne({ _id: id });
+
+  console.log(bar);
+
+  return bar;
+};
+
+export { getRandomBar, getChosenBar };

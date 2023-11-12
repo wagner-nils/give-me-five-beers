@@ -18,4 +18,18 @@ const getRandomBar = async (req: Request, res: Response) => {
   } catch (error) {}
 };
 
-export { getRandomBar };
+const getChosenBar = async (req: Request, res: Response) => {
+  try {
+    const {
+      params: { type, id },
+    } = req;
+
+    if (type === 'bar') {
+      const bar = await BarModel.getChosenBar(id);
+
+      res.status(200).send(bar);
+    }
+  } catch (error) {}
+};
+
+export { getRandomBar, getChosenBar };

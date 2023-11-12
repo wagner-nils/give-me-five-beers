@@ -47,7 +47,9 @@ const HomePage = (props: Props) => {
     // if (hasTodo && !hasTodoInProgress) {
     if (hasChoice) {
       dispatch(setHomePage('beer'));
-      dispatch(setChoice(choice[0].type));
+      dispatch(
+        setChoice({ type: choice[0].type, choiceId: choice[0].choiceId })
+      );
     } else {
       dispatch(setHomePage('todo'));
     }

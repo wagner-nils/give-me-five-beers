@@ -13,12 +13,18 @@ const HomeBeerPage = (props: Props) => {
   // use context?
   // how to use choice and type; extremely ugly!
   const choice = getChoice();
-  const [type, setType] = useState(choice ? choice : null);
+  const hasChosen = !!choice.choiceId;
+  const [type, setType] = useState(null);
+  console.log(choice, hasChosen, type);
 
   return (
     <div className="beer-section">
-      {choice ? (
-        <BeerInformationBox type={choice} />
+      {hasChosen || type ? (
+        <BeerInformationBox
+          hasChosen={hasChosen}
+          choice={choice}
+          type={choice.type}
+        />
       ) : (
         <BeerOptions setType={setType} />
       )}
