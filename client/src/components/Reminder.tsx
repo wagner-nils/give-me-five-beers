@@ -1,3 +1,6 @@
+import { getTime } from '../redux/configSlice';
+import { getTodos } from '../redux/todosSlice';
+
 import Text from './Text';
 
 import '../styles/Reminder.css';
@@ -7,12 +10,21 @@ type Props = {
 };
 
 const Reminder = ({ type }: Props) => {
+  const todos = getTodos();
+
+  const hasTodo = todos.length > 0;
+  const time = getTime();
+
   if (type === 'todo') {
     return (
       <div className="reminder-section">
         <Text text="Add your dreams of the day" />
         <Text text="-> you day dreams" />
-        <Text text="It is ok not to." light />
+        {hasTodo ? (
+          <Text text={`Come back at ${time} for the cheering for it`} light />
+        ) : (
+          <Text text="It is ok not to." light />
+        )}
         {/* make it small */}
       </div>
     );
