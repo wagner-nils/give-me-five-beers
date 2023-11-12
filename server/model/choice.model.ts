@@ -12,7 +12,7 @@ const postBeerOption = async ({ type, userId, choiceId }: Choice) => {
 
   await UserModel.findOneAndUpdate(
     { _id: userId },
-    { $push: { choice: choiceId } }
+    { $push: { choice: choiceRes.id } }
   );
 
   return choiceRes;
