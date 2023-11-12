@@ -15,18 +15,18 @@ export const userSchema = new Schema({
       ref: 'todo',
     },
   ],
-  // collection: [
-  //   {
-  //     type: Types.ObjectId,
-  //     ref: 'BarModel',
-  //   },
-  // ],
-  wishlist: [
+  choice: [
     {
       type: Types.ObjectId,
-      ref: 'BreweryModel',
+      ref: 'choice',
     },
   ],
+  // wishlist: [
+  //   {
+  //     type: Types.ObjectId,
+  //     ref: 'BreweryModel',
+  //   },
+  // ],
   config: {
     time: {
       type: String,

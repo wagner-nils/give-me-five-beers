@@ -3,6 +3,7 @@ import { Router } from 'express';
 import * as userController from './controller/user.controller';
 import * as todoController from './controller/todo.controller';
 import * as barController from './controller/bar.controller';
+import * as ChoiceController from './controller/choice.controller';
 
 const router = Router();
 
@@ -18,8 +19,10 @@ router.post('/todo', todoController.postTodo);
 router.put('/todo/:todoId/:type', todoController.markTodo);
 
 // todo: refactor route structure
-// only for bar
+// only for bar; has nothing to do with choice
 router.get('/choice/:type', barController.getRandomBar);
+
+router.post('/choice/:type', ChoiceController.postBeerOption);
 
 // router.post('/insertbar', barController.insertBar);
 
