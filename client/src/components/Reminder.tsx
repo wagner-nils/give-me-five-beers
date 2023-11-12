@@ -31,13 +31,17 @@ const Reminder = ({ type }: Props) => {
   }
 
   if (type === 'beer') {
-    return (
-      <div className="reminder-section">
-        <Text text="It is night time," />
-        <Text text="go straight for beer." />
-        <button className="reminder-btn">ok</button>
-      </div>
-    );
+    if (hasTodo) {
+      return null;
+    } else {
+      return (
+        <div className="reminder-section">
+          <Text text="It is night time," />
+          <Text text="go straight for beer." />
+          <button className="reminder-btn">ok</button>
+        </div>
+      );
+    }
   }
 };
 
