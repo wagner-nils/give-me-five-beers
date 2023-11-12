@@ -9,6 +9,7 @@ import { useAppSelector } from './hooks';
 const initialState: Config = {
   time: '17:00',
   homePage: '',
+  choice: '',
 };
 
 export const configSlice = createSlice({
@@ -28,13 +29,21 @@ export const configSlice = createSlice({
         homePage: action.payload,
       };
     },
+    setChoice: (state, action: PayloadAction<string>) => {
+      return {
+        ...state,
+        choice: action.payload,
+      };
+    },
   },
 });
 
-export const { setTime, setHomePage } = configSlice.actions;
+export const { setTime, setHomePage, setChoice } = configSlice.actions;
 
 export const getHomePageType = () =>
   useAppSelector(state => state.config.homePage);
 
 export const getTime = () => useAppSelector(state => state.config.time);
+export const getChoice = () => useAppSelector(state => state.config.choice);
+
 export const configReducer = configSlice.reducer;

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { getChoice } from '../redux/configSlice';
+
 import BeerOptions from '../components/BeerOptions';
 import BeerInformationBox from '../components/BeerInformationBox';
 
@@ -9,13 +11,19 @@ type Props = {};
 const HomeBeerPage = (props: Props) => {
   // todo:
   // use context?
-  // save type in redux / db
-  const [type, setType] = useState(null);
+  // how to use choice and type; extremely ugly!
+  const choice = getChoice();
+  const [type, setType] = useState(choice ? choice : null);
 
   return (
     <div className="beer-section">
-      {!type && <BeerOptions setType={setType} />}
-      {type && <BeerInformationBox type={type} />}
+      {choice ? (
+        <BeerInformationBox type={choice} />
+      ) : (
+        <BeerOptions setType={setType} />
+      )}
+      {/* {!type && <BeerOptions setType={setType} />}
+      {type && <BeerInformationBox type={type} />} */}
       {/* {true && <BeerInformationBox type={'brewery'} />} */}
     </div>
   );

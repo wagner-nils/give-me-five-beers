@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 
 import HomeTodoPage from './HomeTodoPage';
 import HomeBeerPage from './HomeBeerPage';
 
 import { useAppDispatch } from '../redux/hooks';
 import { useGetUserQuery } from '../redux/apiSlice';
-import { setTime, setHomePage, getHomePageType } from '../redux/configSlice';
+import {
+  setTime,
+  setHomePage,
+  setChoice,
+  getHomePageType,
+} from '../redux/configSlice';
 
 import '../styles/HomePage.css';
 
@@ -19,6 +25,7 @@ const HomePage = (props: Props) => {
   useEffect(() => {
     const time = user?.config?.time;
     const todos = user?.todo;
+    const choice = user?.choice;
 
     if (time) {
       dispatch(setTime(time));
@@ -31,9 +38,16 @@ const HomePage = (props: Props) => {
     console.log('has tpdp', hasTodo);
     console.log('has tpdp in pg', hasTodoInProgress);
 
+    // has choice
+
+    // const todayChoice = choice?.filter(c => moment().isSame(c.date, 'date'));
+    const hasChoice = choice?.length;
+
     // 第一次 login 时也能看见
-    if (hasTodo && !hasTodoInProgress) {
+    // if (hasTodo && !hasTodoInProgress) {
+    if (hasChoice) {
       dispatch(setHomePage('beer'));
+      dispatch(setChoice(choice[0].type));
     } else {
       dispatch(setHomePage('todo'));
     }

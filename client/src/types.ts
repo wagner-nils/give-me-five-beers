@@ -9,6 +9,7 @@ export interface Todo {
 export interface Config {
   time: string;
   homePage: string;
+  choice: string;
 }
 
 export interface User {
@@ -16,4 +17,10 @@ export interface User {
   username: string;
   config: Config;
   todo?: Todo[];
+  choice?: Choice[];
+}
+
+export interface Choice {
+  type: string;
+  date: string;
 }

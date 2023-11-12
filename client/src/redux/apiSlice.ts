@@ -35,6 +35,17 @@ export const dbApi = createApi({
     getRandomBar: builder.query<any, void>({
       query: () => '/choice/bar',
     }),
+
+    postBeerOption: builder.mutation<any, any>({
+      query: ({ type, userId, choiceId }) => ({
+        url: `/choice/bar${type}`,
+        method: 'POST',
+        body: {
+          userId,
+          choiceId,
+        },
+      }),
+    }),
   }),
 });
 
@@ -66,6 +77,7 @@ export const {
   useMarkTodoMutation,
   useGetUserQuery,
   useGetRandomBarQuery,
+  usePostBeerOptionMutation,
 } = dbApi;
 export const dbApiReducer = dbApi.reducer;
 
