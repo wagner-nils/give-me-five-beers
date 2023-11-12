@@ -5,6 +5,7 @@
 }
 
 :root {
+  /* #663399 */
   --primary-background-color: rebeccapurple;
   --primary-background-color-light: rgba(102, 51, 153, 0.2);
   --primary-color: #ffc002;
