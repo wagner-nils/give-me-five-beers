@@ -10,6 +10,7 @@ import {
   setTime,
   setHomePage,
   setChoice,
+  setUserId,
   getHomePageType,
   getUserId,
 } from '../redux/configSlice';
@@ -62,6 +63,18 @@ const HomePage = (props: Props) => {
   useEffect(() => {
     setType(homePageType);
   }, [homePageType]);
+
+  // todo:
+  // token in cookie
+  // ? how to expire local storage?
+  useEffect(() => {
+    if (userId) {
+      localStorage.setItem('userId', userId);
+    } else {
+      const userId = localStorage.getItem('userId');
+      dispatch(setUserId(userId));
+    }
+  }, []);
 
   if (!type) {
     return 'loading';
