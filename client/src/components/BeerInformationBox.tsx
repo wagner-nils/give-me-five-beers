@@ -25,6 +25,7 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
   let title = '',
     text = '',
     iconSrc = '';
+
   switch (type) {
     case 'bar':
       title = 'Fancying a drink';
@@ -51,6 +52,11 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
   // const text = {
   //   bar: 'go to this bar',
   //   brewery: 'look at this brewery',
+  // };
+
+  // const iconSrc = {
+  //   bar: HazyIpa,
+  //   brewery: Brewery,
   // };
 
   // todo: refactor
@@ -85,11 +91,6 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
     }
   }, [isSuccess]);
 
-  // const iconSrc = {
-  //   bar: HazyIpa,
-  //   brewery: Brewery,
-  // };
-
   return (
     <div className="beer-information-box">
       <Text large bold underline text={title} />
@@ -112,6 +113,16 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
           <p>
             {info.city} {info.country}
           </p>
+          {type === 'bar' && (
+            <iframe
+              width="90%"
+              height="280px"
+              style={{ border: 'none' }}
+              src={`https://www.google.com/maps/embed/v1/place?key=${
+                import.meta.env.VITE_GOOGLE_MAP_API_KEY
+              }&q=place_id:${info.placeId}&zoom=14`}
+            ></iframe>
+          )}
         </div>
       )}
       <div>

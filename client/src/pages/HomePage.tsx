@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import moment from 'moment';
 
 import HomeTodoPage from './HomeTodoPage';
 import HomeBeerPage from './HomeBeerPage';
@@ -81,7 +80,7 @@ const HomePage = (props: Props) => {
   }
 
   return (
-    <div>
+    <div className="home-page">
       <h1 className="home-title">
         Hello, November <br />
         Give Me 5 Beers

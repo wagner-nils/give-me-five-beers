@@ -1,5 +1,11 @@
+.home-page {
+  padding: 2rem 2rem 1rem;
+  height: 90vh;
+  overflow-y: scroll;
+}
+
 .home-title {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   padding: 1rem;
   color: var(--primary-text-color);
   /* background-color: var(--primary-color); */
