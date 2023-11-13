@@ -1,4 +1,6 @@
 import moment from 'moment';
+import bcrypt from 'bcrypt';
+
 import { UserModel } from './index';
 
 const getUser = async (id: string) => {
@@ -34,7 +36,12 @@ const loginUser = async (user: any) => {
   const { username, password } = user;
 
   const res = await UserModel.findOne({ username });
-  if (!res || res.password !== password) {
+  if (!res) {
+    return null;
+  }
+
+  const matchPassword = await bcrypt.compare(password, res?.password || '');
+  if (!matchPassword) {
     return null;
   }
 
@@ -42,8 +49,9 @@ const loginUser = async (user: any) => {
 };
 
 const createUser = async (user: any) => {
-  // { username, password }
-  const res = await UserModel.create(user);
+  const { password } = user;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const res = await UserModel.create({ ...user, password: hashedPassword });
 
   return res.id;
 };
