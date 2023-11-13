@@ -11,6 +11,7 @@ import {
   setHomePage,
   setChoice,
   getHomePageType,
+  getUserId,
 } from '../redux/configSlice';
 
 import '../styles/HomePage.css';
@@ -18,9 +19,12 @@ import '../styles/HomePage.css';
 type Props = {};
 const HomePage = (props: Props) => {
   const [type, setType] = useState('');
-  const { data: user, isSuccess } = useGetUserQuery();
-  const dispatch = useAppDispatch();
+
+  const userId = getUserId();
   const homePageType = getHomePageType();
+
+  const { data: user, isSuccess } = useGetUserQuery(userId);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const time = user?.config?.time;

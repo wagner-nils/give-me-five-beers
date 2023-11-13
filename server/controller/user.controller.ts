@@ -14,6 +14,17 @@ const getUser = async (req: Request, res: Response) => {
   }
 };
 
+const loginUser = async (req: Request, res: Response) => {
+  try {
+    const { body: user } = req;
+
+    console.log(user);
+    const userId = await userModel.loginUser(user);
+
+    res.status(201).send({ userId });
+  } catch (error) {}
+};
+
 const createUser = async (req: Request, res: Response) => {
   try {
     const { body } = req;
@@ -24,4 +35,4 @@ const createUser = async (req: Request, res: Response) => {
   }
 };
 
-export { getUser, createUser };
+export { getUser, loginUser, createUser };

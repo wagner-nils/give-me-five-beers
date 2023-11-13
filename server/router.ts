@@ -11,6 +11,9 @@ router.get('/', (req, res) => {
   res.send('hello from router, i love typescript');
 });
 
+router.post('/login', userController.loginUser);
+router.post('/singup', userController.createUser);
+
 router.get('/user/:userId', userController.getUser);
 router.post('/user', userController.createUser);
 

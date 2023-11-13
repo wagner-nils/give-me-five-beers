@@ -8,8 +8,8 @@ export const dbApi = createApi({
   reducerPath: 'dbApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000' }),
   endpoints: builder => ({
-    getTodos: builder.query<Todo[], void>({
-      query: () => '/user/654ccba8c6e9472ee1acb431/todo',
+    getTodos: builder.query<Todo[], string>({
+      query: userId => `/user/${userId}/todo`,
     }),
 
     postTodo: builder.mutation<Todo, Todo>({
@@ -27,8 +27,16 @@ export const dbApi = createApi({
       }),
     }),
 
-    getUser: builder.query<User, void>({
-      query: () => '/user/654ccba8c6e9472ee1acb431',
+    login: builder.mutation<any, any>({
+      query: user => ({
+        url: `/login`,
+        method: 'POST',
+        body: user,
+      }),
+    }),
+
+    getUser: builder.query<User, string>({
+      query: userId => `/user/${userId}`,
     }),
 
     // todo: refactor api endpoint
@@ -82,6 +90,7 @@ export const {
   useGetTodosQuery,
   usePostTodoMutation,
   useMarkTodoMutation,
+  useLoginMutation,
   useGetUserQuery,
   useGetRandomBarQuery,
   useGetChosenBarQuery,

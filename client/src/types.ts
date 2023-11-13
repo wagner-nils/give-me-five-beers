@@ -7,6 +7,7 @@ export interface Todo {
 }
 
 export interface Config {
+  userId: string;
   time: string;
   homePage: string;
   choice: Choice;

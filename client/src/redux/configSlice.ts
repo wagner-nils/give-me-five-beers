@@ -7,6 +7,7 @@ import { useAppSelector } from './hooks';
 
 // Define a type for the slice state
 const initialState: Config = {
+  userId: '',
   time: '17:00',
   homePage: '',
   choice: {
@@ -38,15 +39,23 @@ export const configSlice = createSlice({
         choice: { ...state.choice, ...action.payload },
       };
     },
+    setUserId: (state, action: PayloadAction<any>) => {
+      return {
+        ...state,
+        userId: action.payload,
+      };
+    },
   },
 });
 
-export const { setTime, setHomePage, setChoice } = configSlice.actions;
+export const { setTime, setHomePage, setChoice, setUserId } =
+  configSlice.actions;
 
 export const getHomePageType = () =>
   useAppSelector(state => state.config.homePage);
 
 export const getTime = () => useAppSelector(state => state.config.time);
 export const getChoice = () => useAppSelector(state => state.config.choice);
+export const getUserId = () => useAppSelector(state => state.config.userId);
 
 export const configReducer = configSlice.reducer;
