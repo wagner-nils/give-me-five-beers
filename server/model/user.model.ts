@@ -61,4 +61,17 @@ const createUser = async (user: any) => {
   return res;
 };
 
-export { getUser, loginUser, createUser };
+const editConfig = async (config: any) => {
+  const { userId, type, value } = config;
+
+  // todo?: how to use $set to update nested fields
+  await UserModel.findOneAndUpdate({ _id: userId }).set('config', {
+    [type]: value,
+  });
+
+  const updatedConfig = await UserModel.findOne({ _id: userId }, 'config');
+
+  return updatedConfig;
+};
+
+export { getUser, loginUser, createUser, editConfig };

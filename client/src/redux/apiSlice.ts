@@ -68,6 +68,14 @@ export const dbApi = createApi({
         },
       }),
     }),
+
+    postConfig: builder.mutation<any, any>({
+      query: config => ({
+        url: `/config/${config.type}`,
+        method: 'POST',
+        body: config,
+      }),
+    }),
   }),
 });
 
@@ -106,6 +114,7 @@ export const {
   useGetRandomBarQuery,
   useGetChosenBarQuery,
   usePostBeerOptionMutation,
+  usePostConfigMutation,
 } = dbApi;
 export const dbApiReducer = dbApi.reducer;
 

@@ -30,4 +30,7 @@ router.post('/choice/:type', ChoiceController.postBeerOption);
 
 // router.post('/insertbar', barController.insertBar);
 
+// config
+router.post('/config/:type', userController.editConfig);
+
 export default router;

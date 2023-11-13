@@ -44,4 +44,27 @@ const createUser = async (req: Request, res: Response) => {
   }
 };
 
-export { getUser, loginUser, createUser };
+const editConfig = async (req: Request, res: Response) => {
+  try {
+    const {
+      params: { type },
+      body: config,
+    } = req;
+
+    if (type !== 'time') {
+      res.status(400).send('can not set this config');
+    }
+
+    const configRes = await userModel.editConfig(config);
+
+    if (!configRes) {
+      throw 'no se ha podido cambiar';
+    }
+
+    res.status(201).send(configRes);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+export { getUser, loginUser, createUser, editConfig };
