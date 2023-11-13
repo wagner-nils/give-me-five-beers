@@ -1,9 +1,21 @@
 .todo-content {
-  background-color: var(--primary-light-color);
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
   border: dashed 1px var(--primary-color);
   color: var(--primary-text-color);
   padding: 0.7rem 0;
   font-size: 1.2rem;
+}
+
+.todo-content.canClick {
+  border: solid 1px var(--primary-color);
+}
+
+.todo-content.clicked {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
 }
 
 .todo-btns {
@@ -21,4 +33,10 @@
   color: var(--primary-text-color);
   padding: 0.3rem;
   font-size: 1rem;
+}
+
+.todo-btn.clicked {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+  border-top: dashed 1px var(--primary-text-color);
 }

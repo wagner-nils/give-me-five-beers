@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
+import classNames from 'classnames';
 
 import AffirmationBox from './AffirmationBox';
+import TodoBtns from './TodoBtns';
 
 import { useAppDispatch } from '../redux/hooks';
 import { usePostTodoMutation, useMarkTodoMutation } from '../redux/apiSlice';
@@ -15,10 +17,13 @@ type Props = {
   content: string;
 };
 
+// todo: extract todo btn component
+
 const Todo = ({ id, content }: Props) => {
   const dispatch = useAppDispatch();
   // todo: show only the clilcked button after clicking, and disable it
   const [type, setType] = useState('');
+  const [showBtn, setShowBtn] = useState(false);
   const [showAff, setShowAff] = useState(false);
   const [seenAff, setSeenAff] = useState(false);
   const [markTodo] = useMarkTodoMutation();
@@ -26,7 +31,7 @@ const Todo = ({ id, content }: Props) => {
 
   const time = getTime();
   const now = moment().format('HH:MM');
-  const showBtn = now > time;
+  const isTime = now > time;
   // todo: enable btn,c lick and show
 
   const handleMarkTodo = (type: string) => {
@@ -62,32 +67,22 @@ const Todo = ({ id, content }: Props) => {
     setShowAff(true);
   };
 
+  const contentClassnames = classNames('todo-content', {
+    canClick: isTime,
+    clicked: showBtn,
+  });
+
   return (
     <div className="todo">
-      <p className="todo-content">{content}</p>
+      <button
+        className={contentClassnames}
+        onClick={() => setShowBtn(true)}
+        disabled={!isTime}
+      >
+        {content}
+      </button>
       {/* {true && ( */}
-      {showBtn && (
-        <div className="todo-btns">
-          <button
-            className="todo-btn complete"
-            onClick={() => handleClick('completed')}
-          >
-            completed
-          </button>
-          <button
-            className="todo-btn abandon"
-            onClick={() => handleClick('abandoned')}
-          >
-            not completed, let it go
-          </button>
-          <button
-            className="todo-btn tomorrow"
-            onClick={() => handleClick('tomorrow')}
-          >
-            move to tomorrow
-          </button>
-        </div>
-      )}
+      {showBtn && <TodoBtns type={type} handleClick={handleClick} />}
       <AffirmationBox
         // display={true}
         display={showAff}
