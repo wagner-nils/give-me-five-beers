@@ -34,13 +34,15 @@ const loginUser = async (user: any) => {
   const { username, password } = user;
 
   const res = await UserModel.findOne({ username, password });
-  console.log(res);
 
   return res?.id;
 };
 
 const createUser = async (user: any) => {
-  return await UserModel.create(user);
+  // { username, password }
+  const res = await UserModel.create(user);
+
+  return res.id;
 };
 
 export { getUser, loginUser, createUser };

@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/login', userController.loginUser);
-router.post('/singup', userController.createUser);
+router.post('/signup', userController.createUser);
 
 router.get('/user/:userId', userController.getUser);
 router.post('/user', userController.createUser);

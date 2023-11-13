@@ -17,8 +17,6 @@ const getUser = async (req: Request, res: Response) => {
 const loginUser = async (req: Request, res: Response) => {
   try {
     const { body: user } = req;
-
-    console.log(user);
     const userId = await userModel.loginUser(user);
 
     res.status(201).send({ userId });
@@ -27,9 +25,10 @@ const loginUser = async (req: Request, res: Response) => {
 
 const createUser = async (req: Request, res: Response) => {
   try {
-    const { body } = req;
-    const data = await userModel.createUser(body);
-    res.status(201).send(data);
+    const { body: user } = req;
+    const userId = await userModel.createUser(user);
+
+    res.status(201).send({ userId });
   } catch (error) {
     console.log(error);
   }

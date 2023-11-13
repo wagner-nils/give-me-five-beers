@@ -3,6 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { Todo, User } from '../types';
 
+// why do i use rtk?
+
 // Define a service using a base URL and expected endpoints
 export const dbApi = createApi({
   reducerPath: 'dbApi',
@@ -29,7 +31,15 @@ export const dbApi = createApi({
 
     login: builder.mutation<any, any>({
       query: user => ({
-        url: `/login`,
+        url: '/login',
+        method: 'POST',
+        body: user,
+      }),
+    }),
+
+    signup: builder.mutation<any, any>({
+      query: user => ({
+        url: '/signup',
         method: 'POST',
         body: user,
       }),
@@ -91,6 +101,7 @@ export const {
   usePostTodoMutation,
   useMarkTodoMutation,
   useLoginMutation,
+  useSignupMutation,
   useGetUserQuery,
   useGetRandomBarQuery,
   useGetChosenBarQuery,
