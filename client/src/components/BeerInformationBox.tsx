@@ -14,6 +14,8 @@ import Brewery from '../assets/brewery.png';
 
 import '../styles/BeerInformationBox.css';
 
+const API_KEY = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
+
 type Props = {
   // todo
   hasChosen: Boolean;
@@ -118,9 +120,7 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
               width="90%"
               height="280px"
               style={{ border: 'none' }}
-              src={`https://www.google.com/maps/embed/v1/place?key=${
-                import.meta.env.VITE_GOOGLE_MAP_API_KEY
-              }&q=place_id:${info.placeId}&zoom=14`}
+              src={`https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=place_id:${info.placeId}&zoom=14`}
             ></iframe>
           )}
         </div>
