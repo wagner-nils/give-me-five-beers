@@ -17,10 +17,16 @@ const getUser = async (req: Request, res: Response) => {
 const loginUser = async (req: Request, res: Response) => {
   try {
     const { body: user } = req;
-    const userId = await userModel.loginUser(user);
+    const loginRes = await userModel.loginUser(user);
 
-    res.status(201).send({ userId });
-  } catch (error) {}
+    if (!loginRes) {
+      throw 'username or password incorrect';
+    }
+
+    res.status(201).send({ userId: loginRes.id });
+  } catch (error) {
+    res.status(400).send(error);
+  }
 };
 
 const createUser = async (req: Request, res: Response) => {

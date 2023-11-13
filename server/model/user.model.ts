@@ -33,9 +33,12 @@ const getUser = async (id: string) => {
 const loginUser = async (user: any) => {
   const { username, password } = user;
 
-  const res = await UserModel.findOne({ username, password });
+  const res = await UserModel.findOne({ username });
+  if (!res || res.password !== password) {
+    return null;
+  }
 
-  return res?.id;
+  return res;
 };
 
 const createUser = async (user: any) => {
