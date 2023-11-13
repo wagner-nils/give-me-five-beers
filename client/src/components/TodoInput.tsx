@@ -2,23 +2,24 @@ import { useState } from 'react';
 
 import { useAppDispatch } from '../redux/hooks';
 import { usePostTodoMutation } from '../redux/apiSlice';
+import { getUserId } from '../redux/configSlice';
 import { addTodo } from '../redux/todosSlice';
 
 import '../styles/TodoInput.css';
 
 type Props = {};
 
-const user = '654ccba8c6e9472ee1acb431';
-
 const TodoInput = (props: Props) => {
   const [content, setContent] = useState('');
   const [postTodo] = usePostTodoMutation();
+
+  const userId = getUserId();
   const dispatch = useAppDispatch();
 
   const handleAddTodo = (content: string) => {
     const todo = {
       content,
-      user,
+      user: userId,
     };
 
     postTodo(todo)
