@@ -10,7 +10,7 @@ const postBeerOption = async (req: Request, res: Response) => {
     } = req;
 
     if (type !== 'bar' && type !== 'brewery') {
-      throw new Error();
+      throw 'not the right type of drink';
     }
 
     const choiceRes = await ChoiceModel.postBeerOption({
@@ -19,9 +19,13 @@ const postBeerOption = async (req: Request, res: Response) => {
       choiceId,
     });
 
+    if (!choiceRes) {
+      throw 'only one drink per day';
+    }
+
     res.status(201).send(choiceRes);
   } catch (error) {
-    console.log(error);
+    res.status(400).send(error);
   }
 };
 
