@@ -15,10 +15,15 @@
   align-items: center;
 }
 
+.nav .active .nav-icon {
+  border: solid 3px var(--primary-color);
+}
+
 .nav-icon {
   background-color: var(--primary-light-color);
   width: 3rem;
   height: 3rem;
+  box-sizing: content-box;
   border-radius: 20%;
 }
 

@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
 import NavOutlet from './components/NavOutlet';
+import ProfilePage from './pages/ProfilePge';
 
 import './App.css';
 
@@ -19,6 +20,7 @@ const App = () => {
 
           <Route path="/" element={<NavOutlet />}>
             <Route path="/home" element={<HomePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Routes>
       </BrowserRouter>
