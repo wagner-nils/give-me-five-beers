@@ -22,6 +22,7 @@ export const dbApi = createApi({
         method: 'POST',
         body: todo,
       }),
+      invalidatesTags: ['Todo'], //? no point to send the res to redux
     }),
 
     markTodo: builder.mutation<Todo, any>({
