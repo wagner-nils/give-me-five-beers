@@ -21,12 +21,12 @@ export const userSchema = new Schema({
       ref: 'choice',
     },
   ],
-  // wishlist: [
-  //   {
-  //     type: Types.ObjectId,
-  //     ref: 'BreweryModel',
-  //   },
-  // ],
+  wishlist: [
+    {
+      type: Types.ObjectId,
+      ref: 'choice',
+    },
+  ],
   config: {
     time: {
       type: String,

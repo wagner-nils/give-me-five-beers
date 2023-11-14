@@ -74,4 +74,29 @@ const editConfig = async (config: any) => {
   return updatedConfig;
 };
 
-export { getUser, loginUser, createUser, editConfig };
+const getWishlist = async (userId: string) => {
+  const wishlistRes = await UserModel.find({ _id: userId }, 'wishlist');
+
+  return wishlistRes;
+};
+
+const addToWishlist = async (info: any) => {
+  const { id, userId } = info;
+
+  const wishlistRes = await UserModel.findOneAndUpdate(
+    { _id: userId },
+    { $push: { wishlist: id } },
+    { new: true }
+  ).select('wishlist');
+
+  return wishlistRes;
+};
+
+export {
+  getUser,
+  loginUser,
+  createUser,
+  editConfig,
+  getWishlist,
+  addToWishlist,
+};

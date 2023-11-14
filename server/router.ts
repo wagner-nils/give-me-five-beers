@@ -33,4 +33,7 @@ router.post('/choice/:type', ChoiceController.postBeerOption);
 // config
 router.post('/config/:type', userController.editConfig);
 
+router.get('/user/:userId/wishlist', userController.getWishlist);
+router.post('/wishlist', userController.addToWishlist);
+
 export default router;

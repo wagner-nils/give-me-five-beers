@@ -9,7 +9,8 @@ type Choice = {
 };
 
 const postBeerOption = async ({ type, userId, choiceId }: Choice) => {
-  const todayChoice = await ChoiceModel.find({
+  const todayChoice = await ChoiceModel.findOne({
+    user: userId,
     date: { $gte: moment().startOf('date'), $lte: moment().endOf('date') },
   });
 
