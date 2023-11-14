@@ -13,6 +13,9 @@ const Reminder = ({ type }: Props) => {
   const todos = getTodos();
 
   const hasTodo = todos.length > 0;
+  const progressTodo = todos.filter(todo => todo.status === 'progress');
+  const hasProgressTodo = progressTodo.length > 0;
+
   const time = getTime();
 
   if (type === 'todo') {
@@ -30,8 +33,19 @@ const Reminder = ({ type }: Props) => {
   }
 
   if (type === 'beer') {
-    if (hasTodo) {
-      return null;
+    if (hasTodo && hasProgressTodo) {
+      return (
+        <div className="reminder-section">
+          <Text text="Now it is time," />
+          <Text text="mark your todos!" />
+        </div>
+      );
+    } else if (hasTodo) {
+      return (
+        <div className="reminder-section">
+          <Text text="Drink now!" />
+        </div>
+      );
     } else {
       return (
         <div className="reminder-section">
