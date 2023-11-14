@@ -162,7 +162,11 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
         </div>
       )}
       <div>
-        <button onClick={handleAddToWishlist} disabled={inWishlist}>
+        <button
+          className="wishlist"
+          onClick={handleAddToWishlist}
+          disabled={inWishlist}
+        >
           {inWishlist ? 'in your wishlist' : 'add to wishlist'}
         </button>
       </div>

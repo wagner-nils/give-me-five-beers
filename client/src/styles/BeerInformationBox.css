@@ -5,6 +5,19 @@
   color: var(--primary-text-color);
 }
 
+.beer-information-box .wishlist {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  border: dashed 1px var(--primary-light-color);
+  color: var(--primary-light-color);
+}
+
+.beer-information-box .wishlist:disabled {
+  background-color: var(--primary-light-color);
+  border: solid 1px var(--primary-text-color);
+  color: var(--primary-text-color);
+}
+
 .beer-information {
   width: 100%;
   padding: 1rem;
