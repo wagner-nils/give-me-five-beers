@@ -52,7 +52,7 @@ const createUser = async (user: any) => {
   const { username, password } = user;
   const currentUser = await UserModel.findOne({ username });
   if (currentUser) {
-    return currentUser;
+    return null;
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);

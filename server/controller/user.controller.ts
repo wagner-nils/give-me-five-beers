@@ -34,7 +34,7 @@ const createUser = async (req: Request, res: Response) => {
     const { body: user } = req;
     const signupRes = await userModel.createUser(user);
 
-    if (signupRes.username === user.username) {
+    if (!signupRes) {
       throw 'user already exits';
     }
 
