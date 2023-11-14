@@ -80,6 +80,14 @@ const getWishlist = async (userId: string) => {
   return wishlistRes;
 };
 
+const getWishlistDetail = async (userId: string) => {
+  const wishlistRes = await UserModel.find({ _id: userId }, 'wishlist')
+    .populate({ path: 'wishlist', select: 'type choiceId' })
+    .exec();
+
+  return wishlistRes;
+};
+
 const addToWishlist = async (info: any) => {
   const { id, userId } = info;
 
@@ -98,5 +106,6 @@ export {
   createUser,
   editConfig,
   getWishlist,
+  getWishlistDetail,
   addToWishlist,
 };

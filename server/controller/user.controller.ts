@@ -78,6 +78,17 @@ const getWishlist = async (req: Request, res: Response) => {
   } catch (error) {}
 };
 
+const getWishlistDetail = async (req: Request, res: Response) => {
+  try {
+    const {
+      params: { userId },
+    } = req;
+    const wishlistRes = await userModel.getWishlistDetail(userId);
+
+    res.status(200).send(wishlistRes);
+  } catch (error) {}
+};
+
 const addToWishlist = async (req: Request, res: Response) => {
   try {
     const { body: wishlistInfo } = req;
@@ -93,5 +104,6 @@ export {
   createUser,
   editConfig,
   getWishlist,
+  getWishlistDetail,
   addToWishlist,
 };
