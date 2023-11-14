@@ -1,14 +1,19 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../redux/hooks';
 import { useLoginMutation } from '../redux/apiSlice';
 import { setUserId } from '../redux/configSlice';
+import OpeningLeft from '../assets/opening-left.png';
+import OpeningRight from '../assets/opening-right.png';
+
+import '../styles/LoginPage.css';
 
 type Props = {};
 const LoginPage = (props: Props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [secret, setSecret] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -56,11 +61,14 @@ const LoginPage = (props: Props) => {
     clearInput();
   };
 
+  const handleToggle = () => {
+    setSecret(!secret);
+  };
+
   return (
-    <div>
-      Login Page
-      <form onSubmit={handleLogin}>
-        <div>
+    <div className="login-page">
+      <form className="login-form" onSubmit={handleLogin}>
+        <div className="field">
           <label htmlFor="">Username:</label>
           <input
             type="text"
@@ -69,17 +77,25 @@ const LoginPage = (props: Props) => {
             onChange={handelChange}
           />
         </div>
-        <div>
+        <div className="field">
           <label htmlFor="">Password:</label>
           <input
-            type="text"
+            type={secret ? 'password' : 'text'}
             value={password}
             name="password"
             onChange={handelChange}
           />
+          <img
+            src={secret ? OpeningRight : OpeningLeft}
+            alt="see password"
+            onClick={handleToggle}
+          />
         </div>
         <button type="submit">Log in</button>
       </form>
+      <Link className="link" to={'/sign'}>
+        or maybe sign up first
+      </Link>
     </div>
   );
 };

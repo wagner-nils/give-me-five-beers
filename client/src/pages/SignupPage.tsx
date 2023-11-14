@@ -1,9 +1,13 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../redux/hooks';
 import { useSignupMutation } from '../redux/apiSlice';
 import { setUserId } from '../redux/configSlice';
+import OpeningLeft from '../assets/opening-left.png';
+import OpeningRight from '../assets/opening-right.png';
+
+import '../styles/SignupPage.css';
 
 // todo: merge login and signup
 
@@ -11,6 +15,7 @@ type Props = {};
 const SignupPage = (props: Props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [secret, setSecret] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -61,11 +66,14 @@ const SignupPage = (props: Props) => {
     clearInput();
   };
 
+  const handleToggle = () => {
+    setSecret(!secret);
+  };
+
   return (
-    <div>
-      Signup Page
-      <form onSubmit={handleSignup}>
-        <div>
+    <div className="signup-page">
+      <form className="signup-form" onSubmit={handleSignup}>
+        <div className="field">
           <label htmlFor="">Username:</label>
           <input
             type="text"
@@ -74,19 +82,27 @@ const SignupPage = (props: Props) => {
             onChange={handelChange}
           />
         </div>
-        <div>
+        <div className="field">
           <label htmlFor="">Password:</label>
           <input
-            type="text"
+            type={secret ? 'password' : 'text'}
             value={password}
             name="password"
             onChange={handelChange}
+          />
+          <img
+            src={secret ? OpeningRight : OpeningLeft}
+            alt="see password"
+            onClick={handleToggle}
           />
         </div>
         <button type="submit" disabled={!hasAllInputs}>
           Sign up
         </button>
       </form>
+      <Link className="link" to={'/login'}>
+        or just log in
+      </Link>
     </div>
   );
 };
