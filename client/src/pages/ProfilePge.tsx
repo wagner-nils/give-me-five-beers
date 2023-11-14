@@ -23,7 +23,6 @@ const ProfilePge = (props: Props) => {
             <ProfileItem itemType="time" itemName={'beer time'} />
             <ProfileItem itemType="collection" itemName={'collection'} />
             <ProfileItem itemType="wishlist" itemName={'wishlist'} />
-            <p>beer time: {user.config.time}</p>
           </div>
         </>
       )}

@@ -16,6 +16,14 @@ const ProfileItem = ({ itemName, itemType }: Props) => {
     if (itemType === 'time') {
       navigate('/config/time');
     }
+
+    if (itemType === 'wishlist') {
+      navigate('/wishlist');
+    }
+
+    if (itemType === 'collection') {
+      navigate('/collection');
+    }
   };
 
   return (

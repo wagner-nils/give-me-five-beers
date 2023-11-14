@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage';
 import NavOutlet from './components/NavOutlet';
 import ProfilePage from './pages/ProfilePge';
 import ConfigPage from './pages/ConfigPage';
+import WishlistPage from './pages/WishlistPage';
+import CollectionPage from './pages/CollectionPage';
 
 import './App.css';
 
@@ -22,8 +24,10 @@ const App = () => {
           <Route path="/" element={<NavOutlet />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/config/:type" element={<ConfigPage />} />
           </Route>
+          <Route path="/config/:type" element={<ConfigPage />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/collection" element={<CollectionPage />} />
         </Routes>
       </BrowserRouter>
     </div>

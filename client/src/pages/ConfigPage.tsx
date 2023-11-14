@@ -1,10 +1,11 @@
 import { useState, FormEvent } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../redux/hooks';
 import { getTime, getUserId, setTime } from '../redux/configSlice';
 import { usePostConfigMutation } from '../redux/apiSlice';
 
+// todo: extract components
 const ConfigPage = () => {
   const { type } = useParams();
   const [postConfig] = usePostConfigMutation();
@@ -52,6 +53,9 @@ const ConfigPage = () => {
           <button type="submit">ok</button>
         </form>
       )}
+      <div>
+        <Link to={'/profile'}> Satisfied, go to profile</Link>
+      </div>
     </div>
   );
 };
