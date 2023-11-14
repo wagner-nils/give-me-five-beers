@@ -1,4 +1,5 @@
-import { getTime } from '../redux/configSlice';
+import { useAppDispatch } from '../redux/hooks';
+import { getTime, setHomePage } from '../redux/configSlice';
 import { getTodos } from '../redux/todosSlice';
 
 import Text from './Text';
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const Reminder = ({ type }: Props) => {
+  const dispatch = useAppDispatch();
   const todos = getTodos();
 
   const hasTodo = todos.length > 0;
@@ -51,7 +53,12 @@ const Reminder = ({ type }: Props) => {
         <div className="reminder-section">
           <Text text="It is night time," />
           <Text text="go straight for beer." />
-          <button className="reminder-btn">ok</button>
+          <button
+            className="reminder-btn"
+            onClick={() => dispatch(setHomePage('beer'))}
+          >
+            ok
+          </button>
         </div>
       );
     }
