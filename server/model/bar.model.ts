@@ -3,7 +3,7 @@ import { BarModel } from './index';
 const getRandomBar = async () => {
   const bar = await BarModel.find({});
 
-  const index = Math.floor(Math.random() * 20);
+  const index = Math.floor(Math.random() * 30);
 
   return bar[index];
 };
