@@ -4,8 +4,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAppDispatch } from '../redux/hooks';
 import { useLoginMutation } from '../redux/apiSlice';
 import { setUserId } from '../redux/configSlice';
+
 import OpeningLeft from '../assets/opening-left.png';
 import OpeningRight from '../assets/opening-right.png';
+import BeerGoodLogo from '../assets/beer-like-logo.png';
 
 import '../styles/LoginPage.css';
 
@@ -67,6 +69,7 @@ const LoginPage = (props: Props) => {
 
   return (
     <div className="login-page">
+      <img src={BeerGoodLogo} alt="good beer is good" />
       <form className="login-form" onSubmit={handleLogin}>
         <div className="field">
           <label htmlFor="">Username:</label>
@@ -93,7 +96,7 @@ const LoginPage = (props: Props) => {
         </div>
         <button type="submit">Log in</button>
       </form>
-      <Link className="link" to={'/sign'}>
+      <Link className="link" to={'/signup'}>
         or maybe sign up first
       </Link>
     </div>

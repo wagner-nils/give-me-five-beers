@@ -3,7 +3,14 @@
   padding: 1rem 3rem 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  gap: 3rem;
+}
+
+.login-page img {
+  width: 15vh;
+  height: 15vh;
 }
 
 .login-form {
