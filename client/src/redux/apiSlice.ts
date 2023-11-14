@@ -56,6 +56,13 @@ export const dbApi = createApi({
       },
     }),
 
+    getUserWishlistDetail: builder.query<any, any>({
+      query: userId => `/user/${userId}/wishlist/detail`,
+      transformResponse: (response: any) => {
+        return response[0]['wishlist'];
+      },
+    }),
+
     addToWishlist: builder.mutation<any, any>({
       query: info => ({
         url: `/wishlist`,
@@ -127,6 +134,7 @@ export const {
   useSignupMutation,
   useGetUserQuery,
   useGetUserWishlistQuery,
+  useGetUserWishlistDetailQuery,
   useAddToWishlistMutation,
   useGetRandomBarQuery,
   useGetChosenBarQuery,

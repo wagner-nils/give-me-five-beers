@@ -1,0 +1,22 @@
+.wishlist-item {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: end;
+}
+
+.wishlist-item-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.wishlist-item-info {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.wishlist-item-info a {
+  color: var(--primary-text-color);
+  text-decoration: underline solid var(--primary-color);
+}

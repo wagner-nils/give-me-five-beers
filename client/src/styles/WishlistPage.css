@@ -1,0 +1,17 @@
+.wishlist-page {
+  padding: 2rem 3rem;
+}
+
+.wishlist-page h1 {
+  margin-bottom: 1rem;
+  color: var(--primary-text-color);
+}
+
+.wishlist-page .profile-link {
+  position: fixed;
+  bottom: 1rem;
+  left: 50vw;
+  transform: translateX(-50%);
+  color: var(--primary-text-color);
+  text-decoration: underline solid var(--primary-color);
+}
