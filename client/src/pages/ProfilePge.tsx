@@ -13,11 +13,11 @@ const ProfilePge = (props: Props) => {
 
   return (
     <div className="profile-page">
-      ProfilePge
       {isSuccess && (
         <>
           <div className="personal-info">
-            <p>name: {user.username}</p>
+            <p>beer lover</p>
+            <h2>{user.username}</h2>
           </div>
           <div className="beer-info">
             <ProfileItem itemType="time" itemName={'beer time'} />

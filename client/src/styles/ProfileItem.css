@@ -5,7 +5,8 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  border: solid 1px var(--primary-text-color);
+  border: solid 1px var(--primary-color);
+  color: var(--primary-text-color);
 }
 
 .profile-item:hover {
