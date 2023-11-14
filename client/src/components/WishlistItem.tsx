@@ -43,7 +43,7 @@ const WishlistItem = ({ wishlist }: Props) => {
       />
       {isSuccess && (
         <div className="wishlist-item-info">
-          <p>{info.name}: </p>
+          <p>{info.name} </p>
           <p>
             {info.city}, {info.country}
           </p>
