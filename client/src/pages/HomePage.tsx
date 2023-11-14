@@ -44,7 +44,7 @@ const HomePage = (props: Props) => {
 
     // has choice
 
-    // const todayChoice = choice?.filter(c => moment().isSame(c.date, 'date'));
+    // choice of today
     const hasChoice = choice?.length;
 
     // 第一次 login 时也能看见
@@ -52,7 +52,11 @@ const HomePage = (props: Props) => {
     if (hasChoice) {
       dispatch(setHomePage('beer'));
       dispatch(
-        setChoice({ type: choice[0].type, choiceId: choice[0].choiceId })
+        setChoice({
+          type: choice[0].type,
+          choiceId: choice[0].choiceId,
+          id: choice[0]._id,
+        })
       );
     } else {
       dispatch(setHomePage('todo'));

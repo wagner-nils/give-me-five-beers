@@ -13,6 +13,7 @@ const initialState: Config = {
   choice: {
     type: '',
     choiceId: '',
+    id: '',
   },
 };
 

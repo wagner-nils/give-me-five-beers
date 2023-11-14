@@ -1,11 +1,14 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
+  useGetUserWishlistQuery,
+  useAddToWishlistMutation,
   useGetRandomBarQuery,
   useGetChosenBarQuery,
   useGetRandomBreweryQuery,
   useGetChosenBreweryQuery,
   usePostBeerOptionMutation,
 } from '../redux/apiSlice';
+import { getUserId } from '../redux/configSlice';
 
 import Text from './Text';
 
@@ -61,6 +64,9 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
   //   brewery: Brewery,
   // };
 
+  const userId = getUserId();
+  const [inWishlist, setInWishlist] = useState(false);
+
   // todo: refactor
   // customize a hook?
   const useQuery = () => {
@@ -78,26 +84,51 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
     return res;
   };
 
-  const { data: info, isSuccess } = useQuery();
+  const { data: info, isSuccess: isInfoSuccess } = useQuery();
+  const { data: wishlist, isSuccess: isWishlistSuccess } =
+    useGetUserWishlistQuery(userId);
 
   const [postBeerOption] = usePostBeerOptionMutation();
+  const [addToWishlist] = useAddToWishlistMutation();
+
+  const handleAddToWishlist = () => {
+    // todo: add front end secure check
+    const info = { userId, id: choice.id };
+    addToWishlist(info)
+      .unwrap()
+      .then(res => {
+        setInWishlist(true);
+      });
+  };
 
   useEffect(() => {
-    if (isSuccess && !hasChosen) {
+    if (isInfoSuccess && !hasChosen) {
       const choice = {
         type,
         choiceId: type === 'bar' ? info._id : info.id,
-        userId: '654ccba8c6e9472ee1acb431',
+        userId,
       };
-      postBeerOption(choice);
+      postBeerOption(choice)
+        .unwrap()
+        .then(res => {
+          // todo?: add to redux, id of the choice
+          console.log('post beer res', res);
+        });
     }
-  }, [isSuccess]);
+  }, [isInfoSuccess]);
+
+  useEffect(() => {
+    if (isWishlistSuccess) {
+      const isInWishlist = wishlist.includes(choice.id);
+      setInWishlist(isInWishlist);
+    }
+  }, [isWishlistSuccess]);
 
   return (
     <div className="beer-information-box">
       <Text large bold underline text={title} />
       <Text text={text} />
-      {isSuccess && (
+      {isInfoSuccess && (
         <div className="beer-information">
           <img className="icon" src={iconSrc} alt="" />
           <p>{info.name}</p>
@@ -125,6 +156,11 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
           )}
         </div>
       )}
+      <div>
+        <button onClick={handleAddToWishlist} disabled={inWishlist}>
+          {inWishlist ? 'in your wishlist' : 'add to wishlist'}
+        </button>
+      </div>
       <div>
         <Text text="It' s really good. Trust me." />
         <Text text="Have a well deserved night!" />

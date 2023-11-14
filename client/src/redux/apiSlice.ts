@@ -49,6 +49,21 @@ export const dbApi = createApi({
       query: userId => `/user/${userId}`,
     }),
 
+    getUserWishlist: builder.query<any, any>({
+      query: userId => `/user/${userId}/wishlist`,
+      transformResponse: (response: any) => {
+        return response[0]['wishlist'];
+      },
+    }),
+
+    addToWishlist: builder.mutation<any, any>({
+      query: info => ({
+        url: `/wishlist`,
+        method: 'POST',
+        body: info,
+      }),
+    }),
+
     // todo: refactor api endpoint
     getRandomBar: builder.query<any, void>({
       query: () => '/choice/bar',
@@ -111,6 +126,8 @@ export const {
   useLoginMutation,
   useSignupMutation,
   useGetUserQuery,
+  useGetUserWishlistQuery,
+  useAddToWishlistMutation,
   useGetRandomBarQuery,
   useGetChosenBarQuery,
   usePostBeerOptionMutation,
