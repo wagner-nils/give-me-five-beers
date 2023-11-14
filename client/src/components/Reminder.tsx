@@ -21,11 +21,10 @@ const Reminder = ({ type }: Props) => {
         <Text text="Add your dreams of the day" />
         <Text text="-> you day dreams" />
         {hasTodo ? (
-          <Text text={`Come back at ${time} for the cheering for it`} light />
+          <Text text={`Come back at ${time} and cheering for it`} light />
         ) : (
           <Text text="It is ok not to." light />
         )}
-        {/* make it small */}
       </div>
     );
   }
