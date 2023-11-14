@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import classNames from 'classnames';
+
 import Text from './Text';
 
 import '../styles/Affirmation.css';
@@ -9,20 +12,28 @@ type Props = {
 };
 const AffirmationBox = ({ display, setDisplay, setSeen }: Props) => {
   // todo: define different types of affirmation
+  const [clicked, setClicked] = useState(false);
 
   if (!display) {
     return null;
   }
 
   const handleClick = () => {
-    setDisplay(false);
-    setSeen(true);
+    setClicked(true);
+    setTimeout(() => {
+      setDisplay(false);
+      setSeen(true);
+    }, 2000);
   };
+
+  const btnClassnames = classNames('affirmation-btn', {
+    clicked,
+  });
 
   return (
     <div className="affirmation-box">
       <Text text="You are the best!" large />
-      <button className="affirmation-btn" onClick={() => handleClick()}>
+      <button className={btnClassnames} onClick={() => handleClick()}>
         I KNOW
       </button>
     </div>
