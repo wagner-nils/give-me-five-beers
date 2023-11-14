@@ -9,6 +9,7 @@ import { Todo, User } from '../types';
 export const dbApi = createApi({
   reducerPath: 'dbApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000' }),
+  tagTypes: ['Config'],
   endpoints: builder => ({
     getTodos: builder.query<Todo[], string>({
       query: userId => `/user/${userId}/todo`,
@@ -47,6 +48,7 @@ export const dbApi = createApi({
 
     getUser: builder.query<User, string>({
       query: userId => `/user/${userId}`,
+      providesTags: ['Config'],
     }),
 
     getUserWishlist: builder.query<any, any>({
@@ -97,6 +99,7 @@ export const dbApi = createApi({
         method: 'POST',
         body: config,
       }),
+      invalidatesTags: ['Config'],
     }),
   }),
 });
