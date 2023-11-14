@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+
+import { useAppDispatch } from '../redux/hooks';
 import {
   useGetUserWishlistQuery,
   useAddToWishlistMutation,
@@ -8,7 +10,7 @@ import {
   useGetChosenBreweryQuery,
   usePostBeerOptionMutation,
 } from '../redux/apiSlice';
-import { getUserId } from '../redux/configSlice';
+import { getUserId, setChoice } from '../redux/configSlice';
 
 import Text from './Text';
 
@@ -66,6 +68,7 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
 
   const userId = getUserId();
   const [inWishlist, setInWishlist] = useState(false);
+  const dispatch = useAppDispatch();
 
   // todo: refactor
   // customize a hook?
@@ -111,8 +114,10 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
       postBeerOption(choice)
         .unwrap()
         .then(res => {
-          // todo?: add to redux, id of the choice
+          // add to redux, id of the choice, for add to wishlist btn to work
           console.log('post beer res', res);
+          const { type, choiceId, _id } = res;
+          dispatch(setChoice({ id: _id, type, choiceId }));
         });
     }
   }, [isInfoSuccess]);

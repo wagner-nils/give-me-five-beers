@@ -9,10 +9,11 @@ import { Todo, User } from '../types';
 export const dbApi = createApi({
   reducerPath: 'dbApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000' }),
-  tagTypes: ['Config'],
+  tagTypes: ['Config', 'Wishlist', 'Choice', 'Todo'],
   endpoints: builder => ({
     getTodos: builder.query<Todo[], string>({
       query: userId => `/user/${userId}/todo`,
+      providesTags: ['Todo'],
     }),
 
     postTodo: builder.mutation<Todo, Todo>({
@@ -28,6 +29,7 @@ export const dbApi = createApi({
         url: `/todo/${id}/${type}`,
         method: 'PUT',
       }),
+      invalidatesTags: ['Todo'],
     }),
 
     login: builder.mutation<any, any>({
@@ -48,7 +50,7 @@ export const dbApi = createApi({
 
     getUser: builder.query<User, string>({
       query: userId => `/user/${userId}`,
-      providesTags: ['Config'],
+      providesTags: ['Config', 'Wishlist', 'Choice', 'Todo'],
     }),
 
     getUserWishlist: builder.query<any, any>({
@@ -56,6 +58,7 @@ export const dbApi = createApi({
       transformResponse: (response: any) => {
         return response[0]['wishlist'];
       },
+      providesTags: ['Wishlist'],
     }),
 
     getUserWishlistDetail: builder.query<any, any>({
@@ -63,6 +66,7 @@ export const dbApi = createApi({
       transformResponse: (response: any) => {
         return response[0]['wishlist'];
       },
+      providesTags: ['Wishlist'],
     }),
 
     addToWishlist: builder.mutation<any, any>({
@@ -71,6 +75,7 @@ export const dbApi = createApi({
         method: 'POST',
         body: info,
       }),
+      invalidatesTags: ['Wishlist'],
     }),
 
     // todo: refactor api endpoint
@@ -91,6 +96,7 @@ export const dbApi = createApi({
           choiceId,
         },
       }),
+      invalidatesTags: ['Choice'],
     }),
 
     postConfig: builder.mutation<any, any>({
