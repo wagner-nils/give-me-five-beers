@@ -22,7 +22,7 @@ const WishlistPage = () => {
       <div>
         {isSuccess &&
           wishlist.map((wishlist: Wishlist) => (
-            <WishlistItem wishlist={wishlist} />
+            <WishlistItem key={wishlist.choiceId} wishlist={wishlist} />
           ))}
       </div>
 

@@ -1,0 +1,39 @@
+.config-page {
+  padding: 2rem 3rem;
+  text-align: left;
+}
+
+.config-page p {
+  margin-bottom: 1rem;
+  color: var(--primary-text-color);
+}
+
+.config-page .config-form {
+  padding-top: 1rem;
+  border-top: solid 1px var(--primary-text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.config-form input {
+  outline: none;
+  padding: 0.5rem 1rem;
+  color: var(--primary-text-color);
+}
+
+.config-page button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--primary-text-color);
+  color: var(--primary-light-color);
+}
+
+.config-page .profile-link {
+  position: fixed;
+  bottom: 1rem;
+  left: 50vw;
+  transform: translateX(-50%);
+  color: var(--primary-text-color);
+  text-decoration: underline solid var(--primary-color);
+}

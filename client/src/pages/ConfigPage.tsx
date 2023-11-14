@@ -5,6 +5,8 @@ import { useAppDispatch } from '../redux/hooks';
 import { getTime, getUserId, setTime } from '../redux/configSlice';
 import { usePostConfigMutation } from '../redux/apiSlice';
 
+import '../styles/ConfigPage.css';
+
 // todo: extract components
 const ConfigPage = () => {
   const { type } = useParams();
@@ -33,16 +35,15 @@ const ConfigPage = () => {
   };
 
   return (
-    <div>
-      ConfigPage
+    <div className="config-page">
       <p>config type: {type}</p>
       <p>You are drinking beer at {time}</p>
       {!showForm && (
         <button onClick={() => setShowForm(true)}>change {type}</button>
       )}
       {showForm && (
-        <form onSubmit={handleSubmit}>
-          enter new {type}:
+        <form className="config-form" onSubmit={handleSubmit}>
+          <p>enter new {type}:</p>
           <input
             type="time"
             min="13:00"
@@ -54,7 +55,10 @@ const ConfigPage = () => {
         </form>
       )}
       <div>
-        <Link to={'/profile'}> Satisfied, go to profile</Link>
+        <Link className="profile-link" to={'/profile'}>
+          {' '}
+          Satisfied, go to profile
+        </Link>
       </div>
     </div>
   );
