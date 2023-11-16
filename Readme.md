@@ -11,18 +11,27 @@ This is what I want for the app, but you can do everything you want! Happy codin
 ### Refactor
 
 - Extract more components. I am repeating myself a lot of times, because i was struggling naming each component that i was to extract and reuse, so it was easier just copying the code and put it there twice.
+
 - Typescript. I didn't use typescript in an appropriate way. I wrote many **any**s, only edits the `type.ts` file when i am getting a new data from the backend and had to edit the type to avoid errors.
+
 - Redux toolkit and rtf query at its more efficient combinations. Many time I am using state from component itself, redux store and data from rtk query, a mix of three at the same time. This can be made cleaner, by separating functional components and presentational components.
+
 - There are some structural issues with some api endpoints under the `/choice`.
+
 - There are some css not following the BEM, can be written better.
+
 - Make it React Native for a proper mobile app.
 
 ### Feature
 
 - Authentication with jwt token.User should not be able to access any route other than `/` `/login` `/signup`
+
   - react- cookies
+
 - Calendar. Add one tab on the left side of nav bar, where a canlendaris displayed, and shows 1)the todos with status of **completed** and **tomorrow** of chosen date . 2) The proposed **bar** or **brewery** of that date, user can register an activity with it, and the corresponding bar or brewery will be added into collection, or removed from the wishlist, both of which can be found in the profile page.
+
   - react-calendar
+
 - Affirmations. Now it only says 'you are the best', which is my favorite. There could be more diversity, it would be nice to create a separate served endpoint, but for now a mock dataset should work. But don't ask ai to generate it.
 
 ### Notes
@@ -48,11 +57,14 @@ npm run dev
 
 ## UX
 
-User can will configure a time to indicate "morning" and "evening", for now I have hardcoded to 18:00.
+User can configure a _beer time_ to indicate "morning" and "evening", the default is 18:00.
+If the user leaves the app at any stage, it should show the same when the user come sback.
 
 ### In the morning
 
 - User can add todo.
+
+#### Stages:
 
 #### There is added todo:
 
@@ -70,6 +82,8 @@ User can will configure a time to indicate "morning" and "evening", for now I ha
 - User cannot add todo.
 - User can mark todo.
 - User can see beer options after all todos are marked.
+
+#### Stages:
 
 #### There is added todo:
 
