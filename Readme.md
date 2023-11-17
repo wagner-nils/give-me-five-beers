@@ -4,7 +4,7 @@ We are heavily attached to different apps daily, and we are pressured with finis
 
 Give me five beers is designed to be used as less as possible, and give users as much amount of joy as possible, for beer lovers and future beer lovers.
 
-## Legacy
+## Legacy Project
 
 This is what I want for the app, but you can do everything you want! Happy coding!
 
