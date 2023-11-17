@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import * as BarModel from '../model/bar.model';
 
+// Load bars to DB
 // const insertBar = (req: Request, res: Response) => {
 //   try {
 //     BarModel.insertMany([]);
