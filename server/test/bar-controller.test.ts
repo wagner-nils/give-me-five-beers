@@ -33,9 +33,6 @@ describe ('Endpoint /choice', () => {
     // })
 })
 
-
-
-
 afterAll(() => {
     mongoose.disconnect()
 })
