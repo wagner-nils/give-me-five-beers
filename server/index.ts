@@ -18,3 +18,6 @@ app.use(router);
 app.listen(PORT, () => {
   console.log(`🍻Express your love for beer at port ${PORT}`);
 });
+
+
+export default app;
