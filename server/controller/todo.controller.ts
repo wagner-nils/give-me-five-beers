@@ -11,7 +11,7 @@ const getTodo = async (req: Request, res: Response) => {
 
     res.status(200).send(data);
   } catch (error) {
-    console.log(error);
+    res.status(500).send(`Error when getting todo: ${error} `)
   }
 };
 
@@ -22,7 +22,7 @@ const postTodo = async (req: Request, res: Response) => {
 
     res.status(201).send(data);
   } catch (error) {
-    console.log(error);
+    res.status(500).send(`Error when posting todo: ${error} `)
   }
 };
 
@@ -35,7 +35,7 @@ const markTodo = async (req: Request, res: Response) => {
 
     res.status(200).send(data);
   } catch (error) {
-    console.log(error);
+    res.status(500).send(`Error when updating todo: ${error} `)
   }
 };
 
