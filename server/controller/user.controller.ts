@@ -101,7 +101,6 @@ const addToWishlist = async (req: Request, res: Response) => {
     res.status(201).send(wishlistRes);
   } catch (error) {
     res.status(500).send(`Error when adding wishlist: ${error} `)
-
   }
 };
 
