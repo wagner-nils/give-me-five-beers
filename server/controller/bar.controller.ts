@@ -16,7 +16,9 @@ const getRandomBar = async (req: Request, res: Response) => {
   try {
     const bar = await BarModel.getRandomBar();
     res.status(200).send(bar);
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).send(`Error when getting bars: ${error} `)
+  }
 };
 
 const getChosenBar = async (req: Request, res: Response) => {
@@ -30,7 +32,9 @@ const getChosenBar = async (req: Request, res: Response) => {
 
       res.status(200).send(bar);
     }
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).send(`Error when getting bars: ${error} `)
+  }
 };
 
 export { getRandomBar, getChosenBar };
