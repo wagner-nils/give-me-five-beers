@@ -41,7 +41,7 @@ export const dbApi = createApi({
       }),
     }),
 
-    signup: builder.mutation<{userId: string}, User>({
+    signup: builder.mutation<{userId: string}, {username: string, password: string}>({
       query: user => ({
         url: '/signup',
         method: 'POST',
