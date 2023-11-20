@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getUser, loginUser, createUser, editConfig } from '../controller/user.controller';
+import { getUser, loginUser, createUser, editConfig, getWishlist, addToWishlist } from '../controller/user.controller';
 import * as userModel from '../model/user.model';
 
 // mmocking userModel modul
@@ -8,6 +8,9 @@ jest.mock('../model/user.model', () => ({
     loginUser: jest.fn(),
     createUser: jest.fn(),
     editConfig: jest.fn(),
+    getWishlist: jest.fn(),
+    findOneAndUpdate: jest.fn(),
+    addToWishlist: jest.fn(),
 }));
 
 describe('getUser Controller', () => {
@@ -136,4 +139,48 @@ describe('editConfig Controller', () => {
         expect(mockRes.send).toHaveBeenCalledWith('no se ha podido cambiar');
     });
 
+});
+
+describe('getWishlist Controller', () => {
+    it('should return the wishlist saved user', async () => {
+        (userModel.getWishlist as jest.Mock).mockResolvedValue({ id: '123' });
+
+        const mockReq = { params: { userId: '123' } } as unknown as Request;
+        const mockRes = {
+            status: jest.fn().mockReturnThis(),
+            send: jest.fn(),
+        } as unknown as Response;
+
+        jest.spyOn(userModel, 'getWishlist').mockResolvedValue({ id: '123' } as any);
+
+        await getWishlist(mockReq, mockRes);
+
+        expect(mockRes.status).toHaveBeenCalledWith(200);
+        expect(mockRes.send).toHaveBeenCalledWith({ id: '123' });
+    });
+});
+
+describe('addToWishlist Controller', () => {
+    it('should add to the wishlist saved user', async () => {
+        const mockReq = { body: { id: 'someId', userId: '123' } } as unknown as Request;
+        const mockRes = {
+            status: jest.fn().mockReturnThis(),
+            send: jest.fn(),
+        } as unknown as Response;
+
+        const mockWishlistRes = {
+            wishlist: ['someId'],
+            _id: '123'
+        };
+
+        jest.spyOn(userModel, 'addToWishlist').mockResolvedValue(mockWishlistRes as any);
+
+        await addToWishlist(mockReq, mockRes);
+
+        expect(mockRes.status).toHaveBeenCalledWith(201);
+        expect(mockRes.send).toHaveBeenCalledWith({
+            _id: '123',
+            wishlist: ['someId']
+        });
+    });
 });
