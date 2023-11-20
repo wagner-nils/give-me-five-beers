@@ -5,6 +5,12 @@ import * as BarModel from '../model/bar.model';
 
 let con: any;
 
+jest.mock('../model/bar.model', () => ({
+    getRandomBar: jest.fn(),
+    getChosenBar: jest.fn(),
+}))
+
+
 beforeAll(async () => {
     await mongoose.connect(process.env.MONGO_URI!);
     con = await request(app);
@@ -13,7 +19,7 @@ beforeAll(async () => {
 
 describe('getRandomBar controller', () => {
     const bar = {
-        _id: new ObjectId('6556300d1774242995441f70'),
+        _id: '6556300d1774242995441f70',
         formattedAddress: 'C/ de Còrsega, 611, 08025 Barcelona, Spain',
         name: 'La Cerveseria Clandestina',
         placeId: 'ChIJD1IZ2tqipBIRoUD-UMvz4nw',
@@ -34,7 +40,8 @@ describe('getRandomBar controller', () => {
 
     it('Responds with the bar', async () => {
         const res = await con.get('/choice/bar');
-        expect(res.text).toBe(bar)
+        console.log(res.body)
+        expect(res.body).toStrictEqual(bar)
     }, 70000);
 });
 
@@ -54,6 +61,6 @@ describe('getChosenBar controller', () => {
     // })
 });
 
-afterAll(() => {
-    mongoose.disconnect()
+afterAll(async () => {
+    await mongoose.disconnect()
 })
