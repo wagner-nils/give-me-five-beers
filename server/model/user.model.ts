@@ -4,14 +4,15 @@ import bcrypt from 'bcrypt';
 import { UserModel } from './index';
 
 const getUser = async (id: string) => {
+  const startOfDay = moment().startOf('date').toDate(); // Convert to JavaScript Date
+
   const todos = await UserModel.findOne({ _id: id })
     .populate({
       path: 'todo',
       select: 'content status',
       match: {
         date: {
-          $gte: moment().startOf('date'),
-          $lte: moment().endOf('date'),
+          $eq: startOfDay,
         },
       },
     })
@@ -20,8 +21,7 @@ const getUser = async (id: string) => {
       select: 'date type choiceId',
       match: {
         date: {
-          $gte: moment().startOf('date'),
-          $lte: moment().endOf('date'),
+          $eq: startOfDay,
         },
       },
     })
