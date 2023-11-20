@@ -24,7 +24,7 @@ const API_KEY = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
 type Props = {
   // todo
   hasChosen: Boolean;
-  choice: any;
+  choice: any; // buena pregunta - todo
   type: string;
 };
 

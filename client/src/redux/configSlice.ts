@@ -34,13 +34,13 @@ export const configSlice = createSlice({
         homePage: action.payload,
       };
     },
-    setChoice: (state, action: PayloadAction<any>) => {
+    setChoice: (state, action: PayloadAction<object>) => { //changed from any to object
       return {
         ...state,
         choice: { ...state.choice, ...action.payload },
       };
     },
-    setUserId: (state, action: PayloadAction<any>) => {
+    setUserId: (state, action: PayloadAction<string>) => { //changed from any to string
       return {
         ...state,
         userId: action.payload,
