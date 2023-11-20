@@ -10,7 +10,7 @@ const getUser = async (req: Request, res: Response) => {
     const data = await userModel.getUser(userId);
     res.status(200).send(data);
   } catch (error) {
-    console.log(error);
+    res.status(500).send(`Error when getting user: ${error} `)
   }
 };
 
@@ -75,7 +75,9 @@ const getWishlist = async (req: Request, res: Response) => {
     const wishlistRes = await userModel.getWishlist(userId);
 
     res.status(200).send(wishlistRes);
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).send(`Error when getting wishlist: ${error} `)
+  }
 };
 
 const getWishlistDetail = async (req: Request, res: Response) => {
@@ -86,7 +88,9 @@ const getWishlistDetail = async (req: Request, res: Response) => {
     const wishlistRes = await userModel.getWishlistDetail(userId);
 
     res.status(200).send(wishlistRes);
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).send(`Error when getting wishlist details: ${error} `)
+  }
 };
 
 const addToWishlist = async (req: Request, res: Response) => {
@@ -95,7 +99,10 @@ const addToWishlist = async (req: Request, res: Response) => {
     const wishlistRes = await userModel.addToWishlist(wishlistInfo);
 
     res.status(201).send(wishlistRes);
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).send(`Error when adding wishlist: ${error} `)
+
+  }
 };
 
 export {
