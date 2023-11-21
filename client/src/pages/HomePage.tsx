@@ -16,8 +16,7 @@ import {
 
 import '../styles/HomePage.css';
 
-type Props = {};
-const HomePage = (props: Props) => {
+const HomePage = () => {
   const [type, setType] = useState('');
 
   const userId = getUserId();
