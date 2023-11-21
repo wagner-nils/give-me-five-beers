@@ -71,7 +71,7 @@ const LoginPage = () => {
       <img src={BeerGoodLogo} alt="good beer is good" />
       <form className="login-form" onSubmit={handleLogin}>
         <div className="field">
-          <label htmlFor="">Username:</label>
+          <label htmlFor="username">Username:</label>
           <input
             type="text"
             value={username}
@@ -82,6 +82,7 @@ const LoginPage = () => {
         <div className="field">
           <label htmlFor="">Password:</label>
           <input
+            data-testid="password"
             type={secret ? 'password' : 'text'}
             value={password}
             name="password"
