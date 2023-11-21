@@ -2,7 +2,7 @@ import StatusBtn from './SatusBtn';
 
 type Props = {
   type: string;
-  handleClick: Function;
+  handleClick: (type: string) => void;
 };
 const TodoBtns = ({ type, handleClick }: Props) => {
   if (!type) {
