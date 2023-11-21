@@ -1,6 +1,5 @@
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-// import rootReducer from 'path-to-your-root-reducer';
 import { configReducer } from '../redux/configSlice';
 import { vi } from 'vitest';
 import { describe, expect, it } from 'vitest';
