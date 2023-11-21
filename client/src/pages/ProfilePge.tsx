@@ -5,8 +5,7 @@ import ProfileItem from '../components/ProfileItem';
 
 import '../styles/ProfilePage.css';
 
-type Props = {};
-const ProfilePge = (props: Props) => {
+const ProfilePge = () => {
   const userId = getUserId();
 
   const { data: user, isSuccess } = useGetUserQuery(userId);

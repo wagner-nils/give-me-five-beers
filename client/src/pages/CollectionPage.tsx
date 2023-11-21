@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
-type Props = {};
-const CollectionPage = (props: Props) => {
+const CollectionPage = () => {
   return (
     <div>
       CollectionPage

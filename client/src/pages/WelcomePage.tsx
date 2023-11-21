@@ -4,8 +4,7 @@ import BeerGoodLogo from '../assets/beer-like-logo.png';
 
 import '../styles/WelcomePage.css';
 
-type Props = {};
-const WelcomePage = (props: Props) => {
+const WelcomePage = () => {
   const navigate = useNavigate();
 
   const handleClick = (path: string) => {

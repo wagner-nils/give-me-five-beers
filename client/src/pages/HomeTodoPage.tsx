@@ -8,9 +8,7 @@ import { addTodos } from '../redux/todosSlice';
 
 // import { Todo } from '../types';
 
-type Props = {};
-
-const HomeTodoPage = (props: Props) => {
+const HomeTodoPage = () => {
   const userId = getUserId();
   const { data: todos = [] } = useGetTodosQuery(userId);
   const dispatch = useAppDispatch();

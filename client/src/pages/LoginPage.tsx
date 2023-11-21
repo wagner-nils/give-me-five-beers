@@ -11,8 +11,7 @@ import BeerGoodLogo from '../assets/beer-like-logo.png';
 
 import '../styles/LoginPage.css';
 
-type Props = {};
-const LoginPage = (props: Props) => {
+const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [secret, setSecret] = useState(true);

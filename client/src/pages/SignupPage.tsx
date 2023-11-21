@@ -13,8 +13,7 @@ import '../styles/SignupPage.css';
 
 // todo: merge login and signup
 
-type Props = {};
-const SignupPage = (props: Props) => {
+const SignupPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [secret, setSecret] = useState(true);

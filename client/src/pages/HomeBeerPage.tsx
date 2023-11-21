@@ -7,8 +7,7 @@ import BeerInformationBox from '../components/BeerInformationBox';
 
 import '../styles/homePage.css';
 
-type Props = {};
-const HomeBeerPage = (props: Props) => {
+const HomeBeerPage = () => {
   // todo:
   // use context?
   // how to use choice and type; extremely ugly!
