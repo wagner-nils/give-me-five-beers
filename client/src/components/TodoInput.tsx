@@ -7,9 +7,7 @@ import { addTodo } from '../redux/todosSlice';
 
 import '../styles/TodoInput.css';
 
-type Props = {};
-
-const TodoInput = (props: Props) => {
+const TodoInput = () => {
   const [content, setContent] = useState('');
   const [postTodo] = usePostTodoMutation();
 
