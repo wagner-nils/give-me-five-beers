@@ -4,10 +4,10 @@ import '../styles/Text.css';
 
 type Props = {
   text: string;
-  light?: Boolean;
-  large?: Boolean;
-  underline?: Boolean;
-  bold?: Boolean;
+  light?: boolean;
+  large?: boolean;
+  underline?: boolean;
+  bold?: boolean;
 };
 const Text = ({ text, light, large, underline, bold }: Props) => {
   const classnames = classNames({
