@@ -14,6 +14,7 @@ const WelcomePage = () => {
   return (
     <>
       <div className="welcome-page">
+        <p>log in</p>     
         <img src={BeerGoodLogo} alt="good beer is good" />
         <div className="welcome-options">
           <button onClick={() => handleClick('login')}>log in</button>
