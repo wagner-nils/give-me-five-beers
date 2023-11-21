@@ -1,7 +1,7 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { Todo, User } from '../types';
+import { Todo, User, Wishlist, Bar, Brewery } from '../types';
 
 // why do i use rtk?
 
@@ -25,7 +25,7 @@ export const dbApi = createApi({
       invalidatesTags: ['Todo'], //? no point to send the res to redux
     }),
 
-    markTodo: builder.mutation<Todo, any>({
+    markTodo: builder.mutation<Todo, {id: string | undefined; type: string}>({
       query: ({ id, type }) => ({
         url: `/todo/${id}/${type}`,
         method: 'PUT',
@@ -33,7 +33,7 @@ export const dbApi = createApi({
       invalidatesTags: ['Todo'],
     }),
 
-    login: builder.mutation<any, any>({
+    login: builder.mutation<{userId: string}, {username: string, password: string}>({
       query: user => ({
         url: '/login',
         method: 'POST',
@@ -41,7 +41,7 @@ export const dbApi = createApi({
       }),
     }),
 
-    signup: builder.mutation<any, any>({
+    signup: builder.mutation<{userId: string}, {username: string, password: string}>({
       query: user => ({
         url: '/signup',
         method: 'POST',
@@ -54,23 +54,23 @@ export const dbApi = createApi({
       providesTags: ['Config', 'Wishlist', 'Choice', 'Todo'],
     }),
 
-    getUserWishlist: builder.query<any, any>({
+    getUserWishlist: builder.query<string[], string>({
       query: userId => `/user/${userId}/wishlist`,
-      transformResponse: (response: any) => {
+      transformResponse: (response: {wishlist: string[], _id: string}[]) => {
         return response[0]['wishlist'];
       },
       providesTags: ['Wishlist'],
     }),
 
-    getUserWishlistDetail: builder.query<any, any>({
+    getUserWishlistDetail: builder.query<Wishlist[], string>({
       query: userId => `/user/${userId}/wishlist/detail`,
-      transformResponse: (response: any) => {
+      transformResponse: (response: {wishlist: Wishlist[]}[]) => {
         return response[0]['wishlist'];
       },
       providesTags: ['Wishlist'],
     }),
 
-    addToWishlist: builder.mutation<any, any>({
+    addToWishlist: builder.mutation<{userId: string, id: string}, {userId: string, id: string}>({
       query: info => ({
         url: `/wishlist`,
         method: 'POST',
@@ -80,15 +80,15 @@ export const dbApi = createApi({
     }),
 
     // todo: refactor api endpoint
-    getRandomBar: builder.query<any, void>({
+    getRandomBar: builder.query<Bar, void>({
       query: () => '/choice/bar',
     }),
 
-    getChosenBar: builder.query<any, string>({
+    getChosenBar: builder.query<Bar, string>({
       query: id => `/choice/bar/${id}`,
     }),
 
-    postBeerOption: builder.mutation<any, any>({
+    postBeerOption: builder.mutation<{type: string, userId: string, choiceId: string, _id: string}, {type: string, userId: string, choiceId: string}>({
       query: ({ type, userId, choiceId }) => ({
         url: `/choice/${type}`,
         method: 'POST',
@@ -99,8 +99,8 @@ export const dbApi = createApi({
       }),
       invalidatesTags: ['Choice'],
     }),
-
-    postConfig: builder.mutation<any, any>({
+// { userId, type, value: updatedTime }
+    postConfig: builder.mutation<{userId: string, type: string, value: string, _id: string, config: {time: string}}, {userId: string, type?: string, value: string}>({
       query: config => ({
         url: `/config/${config.type}`,
         method: 'POST',
@@ -118,17 +118,17 @@ export const breweryApi = createApi({
     baseUrl: 'https://api.openbrewerydb.org/v1/breweries',
   }),
   endpoints: builder => ({
-    getRandomBrewery: builder.query<any, void>({
+    getRandomBrewery: builder.query<Brewery, void>({
       query: () => ({
         url: '/random',
         // todo: how to prevent caching
         headers: { 'Cache-Control': 'no-cache' },
       }),
-      transformResponse: (response: any) => {
+      transformResponse: (response: Brewery[]) => {
         return response[0];
       },
     }),
-    getChosenBrewery: builder.query<any, string>({
+    getChosenBrewery: builder.query<Brewery, string>({
       query: id => `${id}`,
     }),
   }),

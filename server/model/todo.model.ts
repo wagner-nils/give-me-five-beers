@@ -18,11 +18,11 @@ const getTodo = async (id: string) => {
   return todos;
 };
 
-const postTodo = async (todo: any) => {
+const postTodo = async (todo: any) => { // couldnt get this to work with Todo type, but defined types below
   const newTodo = await TodoModel.create(todo);
   console.log(newTodo);
-  const userId = todo.user;
-  const todoId = newTodo.id;
+  const userId = todo.user as number;
+  const todoId = newTodo.id as number;
 
   await UserModel.findOneAndUpdate(
     { _id: userId },
