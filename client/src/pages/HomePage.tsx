@@ -74,7 +74,7 @@ const HomePage = () => {
       localStorage.setItem('userId', userId);
     } else {
       const userId = localStorage.getItem('userId');
-      dispatch(setUserId(userId));
+      dispatch(setUserId(userId!));
     }
   }, []);
 

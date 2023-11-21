@@ -23,8 +23,13 @@ const API_KEY = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
 
 type Props = {
   // todo
-  hasChosen: Boolean;
-  choice: any; // buena pregunta - I think its either a number or a string or an Object; Mariana: "Try to be more specific with your TODOs for your future self"
+  hasChosen: boolean;
+  choice:  {
+    type: string;
+    choiceId: string;
+    userId: string;
+    id: string;
+  }; // buena pregunta - I think its either a number or a string or an Object; Mariana: "Try to be more specific with your TODOs for your future self"
   type: string;
 };
 
@@ -76,11 +81,11 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
     let res;
     if (type === 'bar') {
       res = hasChosen
-        ? useGetChosenBarQuery(choice.choiceId)
+        ? useGetChosenBarQuery(choice?.choiceId)
         : useGetRandomBarQuery();
     } else {
       res = hasChosen
-        ? useGetChosenBreweryQuery(choice.choiceId)
+        ? useGetChosenBreweryQuery(choice?.choiceId)
         : useGetRandomBreweryQuery();
     }
 
@@ -99,7 +104,7 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
     const info = { userId, id: choice.id };
     addToWishlist(info)
       .unwrap()
-      .then(res => {
+      .then(() => {
         setInWishlist(true);
       });
   };
@@ -139,7 +144,7 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
           <p>{info.name}</p>
           <p>
             {type === 'bar'
-              ? info.formattedAddress.split(',').slice(0, 2).join(',')
+              ? info.formattedAddress?.split(',').slice(0, 2).join(',')
               : info.address_1}
           </p>
           <a
