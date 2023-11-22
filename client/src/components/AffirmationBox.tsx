@@ -7,8 +7,8 @@ import '../styles/Affirmation.css';
 
 type Props = {
   display: boolean;
-  setDisplay: Function;
-  setSeen: Function;
+  setDisplay: (isDisplayed: boolean) => void;
+  setSeen: (isSeen: boolean) => void;
 };
 const AffirmationBox = ({ display, setDisplay, setSeen }: Props) => {
   // todo: define different types of affirmation

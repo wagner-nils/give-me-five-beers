@@ -88,7 +88,7 @@ export const dbApi = createApi({
       query: id => `/choice/bar/${id}`,
     }),
 
-    postBeerOption: builder.mutation<{type: string, userId: string, choiceId: string, _id: string}, {type: string, userId: string, choiceId: string}>({
+    postBeerOption: builder.mutation<{type: string, userId: string, choiceId?: string, _id: string}, {type: string, userId: string, choiceId?: string}>({
       query: ({ type, userId, choiceId }) => ({
         url: `/choice/${type}`,
         method: 'POST',

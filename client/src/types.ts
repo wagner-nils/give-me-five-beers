@@ -37,14 +37,18 @@ export interface Wishlist {
 }
 
 export interface Bar {
-  formattedAddress: string,
-  name: string,
-  placeId: string,
-  url: string,
-  website: string,
-  wheelchairAccessibleEntrance: boolean,
-  city: string,
-  country: string,
+  formattedAddress: string;
+  name: string;
+  placeId: string;
+  url: string;
+  website: string;
+  wheelchairAccessibleEntrance: boolean;
+  city: string;
+  country: string;
+  _id: string;
+  id?: string;
+  address_1?: string;
+  website_url?: string;
 }
 
 export interface Brewery {
@@ -64,6 +68,9 @@ export interface Brewery {
   website_url: string;
   state: string;
   street: string;
+  _id?: string;
+  formattedAddress?: string;
+  website?: string;
 }
 
 

@@ -20,7 +20,7 @@ export const todosSlice = createSlice({
       return [...state, action.payload];
     },
 
-    editTodoStatus: (state, action: PayloadAction<{ id: string, type: string }>) => { // changed from any to string for id and type
+    editTodoStatus: (state, action: PayloadAction<{ id?: string, type: string }>) => { // changed from any to string for id and type
       const { id, type } = action.payload;                                            // refactored for simplicity
 
       return state.map(todo => {

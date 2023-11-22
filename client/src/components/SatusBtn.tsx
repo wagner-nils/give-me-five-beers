@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import classNames from 'classnames';
 
 type Props = {
   type: string;
-  clicked?: Boolean;
-  handleClick: Function;
+  clicked?: boolean;
+  handleClick: (type: string) => void;
 };
 
 const StatusBtn = ({ type, clicked = false, handleClick }: Props) => {
