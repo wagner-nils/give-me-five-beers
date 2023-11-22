@@ -29,7 +29,7 @@ type Props = {
     choiceId: string;
     userId: string;
     id: string;
-  }; // buena pregunta - I think its either a number or a string or an Object; Mariana: "Try to be more specific with your TODOs for your future self"
+  };
   type: string;
 };
 
@@ -56,27 +56,11 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
       break;
   }
 
-  // const title = {
-  //   bar: 'Fancying a drink',
-  //   brewery: 'Exploring the world',
-  // };
-
-  // const text = {
-  //   bar: 'go to this bar',
-  //   brewery: 'look at this brewery',
-  // };
-
-  // const iconSrc = {
-  //   bar: HazyIpa,
-  //   brewery: Brewery,
-  // };
-
   const userId = getUserId();
   const [inWishlist, setInWishlist] = useState(false);
   const dispatch = useAppDispatch();
 
   // todo: refactor
-  // customize a hook?
   const useQuery = () => {
     let res;
     if (type === 'bar') {
@@ -100,7 +84,6 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
   const [addToWishlist] = useAddToWishlistMutation();
 
   const handleAddToWishlist = () => {
-    // todo: add front end secure check
     const info = { userId, id: choice.id };
     addToWishlist(info)
       .unwrap()
@@ -119,7 +102,6 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
       postBeerOption(choice)
         .unwrap()
         .then(res => {
-          // add to redux, id of the choice, for add to wishlist btn to work
           console.log('post beer res', res);
           const { type, choiceId, _id } = res;
           dispatch(setChoice({ id: _id, type, choiceId }));
@@ -184,5 +166,3 @@ const BeerInformationBox = ({ hasChosen, choice, type }: Props) => {
 };
 
 export default BeerInformationBox;
-
-// refactor: extract info?

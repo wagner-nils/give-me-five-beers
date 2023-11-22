@@ -11,8 +11,6 @@ import BeerGoodLogo from '../assets/beer-like-logo.png';
 
 import '../styles/SignupPage.css';
 
-// todo: merge login and signup
-
 const SignupPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

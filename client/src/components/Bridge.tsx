@@ -20,5 +20,3 @@ const Bridge = (props: Props) => {
   );
 };
 export default Bridge;
-
-// todo: change emoji to icon

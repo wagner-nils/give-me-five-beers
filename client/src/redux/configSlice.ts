@@ -5,7 +5,6 @@ import { Config } from '../types';
 
 import { useAppSelector } from './hooks';
 
-// Define a type for the slice state
 const initialState: Config = {
   userId: '',
   time: '17:00',
@@ -19,7 +18,6 @@ const initialState: Config = {
 
 export const configSlice = createSlice({
   name: 'config',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     setTime: (state, action: PayloadAction<string>) => {
@@ -34,13 +32,13 @@ export const configSlice = createSlice({
         homePage: action.payload,
       };
     },
-    setChoice: (state, action: PayloadAction<object>) => { //changed from any to object
+    setChoice: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         choice: { ...state.choice, ...action.payload },
       };
     },
-    setUserId: (state, action: PayloadAction<string>) => { //changed from any to string
+    setUserId: (state, action: PayloadAction<string>) => {
       return {
         ...state,
         userId: action.payload,

@@ -1,11 +1,6 @@
-// Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
 import { Todo, User, Wishlist, Bar, Brewery } from '../types';
 
-// why do i use rtk?
-
-// Define a service using a base URL and expected endpoints
 export const dbApi = createApi({
   reducerPath: 'dbApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000' }),
@@ -99,7 +94,6 @@ export const dbApi = createApi({
       }),
       invalidatesTags: ['Choice'],
     }),
-// { userId, type, value: updatedTime }
     postConfig: builder.mutation<{userId: string, type: string, value: string, _id: string, config: {time: string}}, {userId: string, type?: string, value: string}>({
       query: config => ({
         url: `/config/${config.type}`,
@@ -121,7 +115,6 @@ export const breweryApi = createApi({
     getRandomBrewery: builder.query<Brewery, void>({
       query: () => ({
         url: '/random',
-        // todo: how to prevent caching
         headers: { 'Cache-Control': 'no-cache' },
       }),
       transformResponse: (response: Brewery[]) => {
@@ -134,8 +127,6 @@ export const breweryApi = createApi({
   }),
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
 export const {
   useGetTodosQuery,
   usePostTodoMutation,
@@ -151,8 +142,8 @@ export const {
   usePostBeerOptionMutation,
   usePostConfigMutation,
 } = dbApi;
-export const dbApiReducer = dbApi.reducer;
 
+export const dbApiReducer = dbApi.reducer;
 export const { useGetRandomBreweryQuery, useGetChosenBreweryQuery } =
   breweryApi;
 export const breweryApiReducer = breweryApi.reducer;

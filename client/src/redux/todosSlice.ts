@@ -4,12 +4,10 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { useAppSelector } from './hooks';
 import { Todo } from '../types';
 
-// Define a type for the slice state
 const initialState: Todo[] = [];
 
 export const todosSlice = createSlice({
   name: 'todos',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     addTodos: (state, action: PayloadAction<Todo[]>) => {
@@ -20,8 +18,8 @@ export const todosSlice = createSlice({
       return [...state, action.payload];
     },
 
-    editTodoStatus: (state, action: PayloadAction<{ id?: string, type: string }>) => { // changed from any to string for id and type
-      const { id, type } = action.payload;                                            // refactored for simplicity
+    editTodoStatus: (state, action: PayloadAction<{ id?: string, type: string }>) => {
+      const { id, type } = action.payload;
 
       return state.map(todo => {
         if (todo._id === id) {
@@ -30,20 +28,6 @@ export const todosSlice = createSlice({
         return todo;
       });
     },
-    //   const {
-    //     payload: { id, type },
-    //   } = action;
-
-    //   console.log('test', action.payload);
-
-    //   state.forEach(todo => {
-    //     if (todo._id === id) {
-    //       todo.status = type;
-    //     }
-    //   });
-
-    //   return state;
-    // },
   },
 });
 

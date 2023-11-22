@@ -1,5 +1,4 @@
 import {describe, expect, it, vi} from 'vitest';
-// import WelcomePage from '../pages/WelcomePage'
 import {fireEvent, render, screen} from '@testing-library/react';
 import { beforeEach } from 'node:test';
 import '@testing-library/jest-dom'
@@ -13,11 +12,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 describe("TodoList", () => {
-    // building the store from api slices that component uses
     const reducer = {config: configReducer, api: dbApiReducer}
     const store = configureStore({reducer})
     
-    // mocking the router
     beforeEach(() => {
         vi.mock('react-router-dom', async (importOriginal) => {
         const mod = await importOriginal<typeof import('react-router-dom')>()
@@ -29,7 +26,6 @@ describe("TodoList", () => {
     }); 
 
     it('should render the labels', () => {
-        // render component with store functionality & router
         render(
             <Provider store={store}>
                 <BrowserRouter>
@@ -37,9 +33,6 @@ describe("TodoList", () => {
                 </BrowserRouter>
             </Provider>
             )
-
-        // Note: the actual code does not have label "for" attributes specified,
-        // hence using getByText rather than getByLabelText
         expect(screen.getByText('Username:')).toBeInTheDocument();
         expect(screen.getByText('Password:')).toBeInTheDocument();
         })
@@ -67,29 +60,4 @@ describe("TodoList", () => {
         expect(password.getAttribute('type') === 'text')
 
     })
-        
-    // BELOW IS NOT WORKING, IT DOESN'T WANT TO MOCK THE SUBMIT FUNC
-    // it('should trigger handleLogin when login form is submitted', () => {
-    //         const reducer = {config: configReducer, api: dbApiReducer}
-    //         const store = configureStore({reducer})
-    //         const mockOnSubmit = vi.fn()
-
-    //         render(
-    //         <Provider store={store}>
-    //             <BrowserRouter>
-    //                 <LoginPage></LoginPage>
-    //             </BrowserRouter>
-    //         </Provider>
-    //         )
-            
-    //         // Mock the handleLogin function
-    //         const loginForm = screen.getByTestId('login-form')
-    //         loginForm.onsubmit = mockOnSubmit;
-            
-    //         const loginBtn = screen.getByText('Log in')
-    //         // loginBtn.setAttribute('onClick', `${mockOnSubmit}`)
-    //         fireEvent.click(loginBtn)
-    //         expect(mockOnSubmit).toHaveBeenCalled();
-            
-    //     })
 })

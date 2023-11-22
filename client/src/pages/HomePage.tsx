@@ -40,14 +40,8 @@ const HomePage = () => {
     console.log(todos);
     console.log('has tpdp', hasTodo);
     console.log('has tpdp in pg', hasTodoInProgress);
-
-    // has choice
-
-    // choice of today
     const hasChoice = choice?.length;
 
-    // 第一次 login 时也能看见
-    // if (hasTodo && !hasTodoInProgress) {
     if (hasChoice) {
       dispatch(setHomePage('beer'));
       dispatch(
@@ -66,9 +60,6 @@ const HomePage = () => {
     setType(homePageType);
   }, [homePageType]);
 
-  // todo:
-  // token in cookie
-  // ? how to expire local storage?
   useEffect(() => {
     if (userId) {
       localStorage.setItem('userId', userId);

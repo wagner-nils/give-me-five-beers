@@ -1,12 +1,9 @@
 import { useEffect } from 'react';
 import TodoSection from '../components/TodoSection';
-
 import { useAppDispatch } from '../redux/hooks';
 import { getUserId } from '../redux/configSlice';
 import { useGetTodosQuery } from '../redux/apiSlice';
 import { addTodos } from '../redux/todosSlice';
-
-// import { Todo } from '../types';
 
 const HomeTodoPage = () => {
   const userId = getUserId();

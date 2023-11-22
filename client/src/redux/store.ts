@@ -14,8 +14,5 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat([dbApi.middleware, breweryApi.middleware]),
 });
-
-// Infer the `RootState` and `AppDispatch` types from the store itself
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
  
 export type AppDispatch = typeof store.dispatch;

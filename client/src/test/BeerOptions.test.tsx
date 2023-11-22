@@ -9,7 +9,7 @@ import BeerOptions from '../components/BeerOptions';
 describe('BeerOptions Component', () => {
   it('renders without crashing', () => {
     const mockSetType = vi.fn();
-    const store = createStore(configReducer); // Create a store with your root reducer
+    const store = createStore(configReducer);
 
     render(
       <Provider store={store}>
@@ -23,7 +23,7 @@ describe('BeerOptions Component', () => {
 
   it('calls setType with correct argument on button click', () => {
     const mockSetType = vi.fn();
-    const store = createStore(configReducer); // Create a store with your root reducer
+    const store = createStore(configReducer);
 
     render(
       <Provider store={store}>

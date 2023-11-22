@@ -8,9 +8,6 @@ import BeerInformationBox from '../components/BeerInformationBox';
 import '../styles/homePage.css';
 
 const HomeBeerPage = () => {
-  // todo:
-  // use context?
-  // how to use choice and type; extremely ugly!
   const choice = getChoice();
   const hasChosen = !!choice.choiceId;
   const [type, setType] = useState(null);
@@ -27,9 +24,6 @@ const HomeBeerPage = () => {
       ) : (
         <BeerOptions setType={setType} />
       )}
-      {/* {!type && <BeerOptions setType={setType} />}
-      {type && <BeerInformationBox type={type} />} */}
-      {/* {true && <BeerInformationBox type={'brewery'} />} */}
     </div>
   );
 };

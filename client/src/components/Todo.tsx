@@ -21,7 +21,6 @@ type Props = {
 
 const Todo = ({ id, content }: Props) => {
   const dispatch = useAppDispatch();
-  // todo: show only the clilcked button after clicking, and disable it
   const [type, setType] = useState('');
   const [showBtn, setShowBtn] = useState(false);
   const [showAff, setShowAff] = useState(false);
@@ -32,10 +31,8 @@ const Todo = ({ id, content }: Props) => {
   const time = getTime();
   const now = moment().format('HH:MM');
   const isTime = now > time;
-  // todo: enable btn,c lick and show
 
   const handleMarkTodo = (type: string) => {
-    // api
     markTodo({ id, type })
       .unwrap()
       .then(() => {});
@@ -81,10 +78,8 @@ const Todo = ({ id, content }: Props) => {
       >
         {content}
       </button>
-      {/* {true && ( */}
       {showBtn && <TodoBtns type={type} handleClick={handleClick} />}
       <AffirmationBox
-        // display={true}
         display={showAff}
         setSeen={setSeenAff}
         setDisplay={setShowAff}
