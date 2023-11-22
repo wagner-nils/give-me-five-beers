@@ -1,7 +1,6 @@
 import { useAppDispatch } from '../redux/hooks';
 import { getTime, setHomePage } from '../redux/configSlice';
 import { getTodos } from '../redux/todosSlice';
-import {Todo as TodoType} from '../types'
 
 import Text from './Text';
 
@@ -15,8 +14,8 @@ const Reminder = ({ type }: Props) => {
   const dispatch = useAppDispatch();
   const todos = getTodos();
 
-  const hasTodo = todos.length > 0;
-  const progressTodo = todos.filter((todo: TodoType) => todo.status === 'progress');
+  const hasTodo = todos && todos.length > 0;
+  const progressTodo = hasTodo ? todos.filter(todo => todo.status === 'progress') : [];
   const hasProgressTodo = progressTodo.length > 0;
 
   const time = getTime();

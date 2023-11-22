@@ -6,7 +6,7 @@ import { dbApi, dbApiReducer, breweryApi, breweryApiReducer } from './apiSlice';
 
 export const store = configureStore({
   reducer: {
-    todos: todosReducer,
+    todos: todosReducer, 
     config: configReducer,
     dbApi: dbApiReducer,
     breweryApi: breweryApiReducer,
