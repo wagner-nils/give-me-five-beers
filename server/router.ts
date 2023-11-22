@@ -4,10 +4,11 @@ import * as userController from './controller/user.controller';
 import * as todoController from './controller/todo.controller';
 import * as barController from './controller/bar.controller';
 import * as ChoiceController from './controller/choice.controller';
+import auth from './middleware/auth';
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
   res.send('hello from router, i love typescript');
 });
 

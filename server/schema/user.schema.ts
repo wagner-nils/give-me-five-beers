@@ -33,4 +33,5 @@ export const userSchema = new Schema({
       default: '18:00',
     },
   },
+  token: { type: String },
 });

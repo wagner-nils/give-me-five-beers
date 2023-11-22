@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import * as userModel from '../model/user.model';
 
 const getUser = async (req: Request, res: Response) => {
@@ -23,7 +24,20 @@ const loginUser = async (req: Request, res: Response) => {
       throw 'username or password incorrect';
     }
 
-    res.status(201).send({ userId: loginRes.id });
+    // Create token
+    dotenv.config()
+    const token = jwt.sign(
+      { user_id: loginRes.id },
+      process.env.TOKEN_KEY as string,
+      {
+        expiresIn: "2h",
+      }
+    );
+    
+    // Save user token
+    user.token = token;
+    res.status(201).send(user);
+    // res.status(201).send({ userId: loginRes.id });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -38,7 +52,19 @@ const createUser = async (req: Request, res: Response) => {
       throw 'user already exits';
     }
 
-    res.status(201).send({ userId: signupRes.id });
+    // Create token
+    dotenv.config()
+    const token = jwt.sign(
+      { user_id: signupRes.id },
+      process.env.TOKEN_KEY as string,
+      {
+        expiresIn: "2h",
+      }
+    );
+    // Save user token
+    user.token = token;
+    res.status(201).send(user);
+    // res.status(201).send({ userId: signupRes.id });
   } catch (error) {
     res.status(400).send(error);
   }
