@@ -2,13 +2,13 @@ import Todo from './Todo';
 import Bridge from './Bridge';
 import { getTodos } from '../redux/todosSlice';
 import '../styles/TodoList.css';
-import {Todo as TodoType} from '../types';
+import { Todo as TodoType } from '../types';
 // Refactored and made logic simpler, removed, unread props 
 
 const TodoList = () => {
   const todos = getTodos();
 
-  if (todos.length === 0) {
+  if (!todos || !todos.length) {
     return <div className="todo-list-section">No todos available</div>;
   }
 

@@ -14,8 +14,8 @@ const Reminder = ({ type }: Props) => {
   const dispatch = useAppDispatch();
   const todos = getTodos();
 
-  const hasTodo = todos.length > 0;
-  const progressTodo = todos.filter(todo => todo.status === 'progress');
+  const hasTodo = todos && todos.length > 0;
+  const progressTodo = hasTodo ? todos.filter(todo => todo.status === 'progress') : [];
   const hasProgressTodo = progressTodo.length > 0;
 
   const time = getTime();
